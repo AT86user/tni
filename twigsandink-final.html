@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>twigs&ink — Crafting Transformative MarTech Experiences</title>
+<meta name="description" content="twigs&ink — A B2B MarTech marketing agency crafting transformative experiences through ABM, content, automation, and agile strategy."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet"/>
+<style>
+/* ── BRAND TOKENS (from Twigs&Ink Brand Guidelines) ──────── */
+:root {
+  --font: 'Poppins', sans-serif;
+
+  /* Brand Colors — exact from guidelines */
+  --navy:    #152E3A;   /* Primary dark navy */
+  --coral:   #F5907C;   /* Primary accent — salmon/coral */
+  --teal:    #7BCAD1;   /* Secondary accent — teal/cyan */
+  --purple:  #9A6FFF;   /* Tertiary — soft purple */
+  --white:   #FFFFFF;
+
+  /* DARK theme (navy base, brandbook cover feel) */
+  --bg:          #0e1e26;
+  --bg-2:        #152E3A;   /* brand navy as surface */
+  --bg-3:        #1a3545;
+  --border:      rgba(123,202,209,0.1);
+  --border-lg:   rgba(123,202,209,0.18);
+  --text:        #f0f4f5;
+  --text-muted:  #8fa8b0;
+  --text-faint:  #3a5560;
+
+  /* Accent = coral from brand palette */
+  --accent:      #F5907C;
+  --accent-dim:  rgba(245,144,124,0.12);
+  --accent-glow: rgba(245,144,124,0.28);
+  --accent-2:    #7BCAD1;   /* teal for secondary moments */
+
+  --text-xs:   clamp(0.7rem,  0.65rem + 0.2vw,  0.8rem);
+  --text-sm:   clamp(0.8rem,  0.75rem + 0.25vw, 0.92rem);
+  --text-base: clamp(0.95rem, 0.9rem  + 0.2vw,  1.05rem);
+  --text-lg:   clamp(1.1rem,  0.9rem  + 0.8vw,  1.4rem);
+  --text-xl:   clamp(1.4rem,  1rem    + 1.5vw,  2.1rem);
+  --text-2xl:  clamp(2rem,    0.8rem  + 3.2vw,  4rem);
+  --text-hero: clamp(2.8rem,  0.5rem  + 6.5vw,  7rem);
+
+  --space-1:0.25rem;--space-2:0.5rem;--space-3:0.75rem;
+  --space-4:1rem;--space-5:1.25rem;--space-6:1.5rem;
+  --space-8:2rem;--space-10:2.5rem;--space-12:3rem;
+  --space-16:4rem;--space-20:5rem;--space-24:6rem;
+
+  --radius-sm:0.25rem;--radius-md:0.5rem;--radius-lg:0.875rem;--radius-xl:1.25rem;--radius-full:9999px;
+  --ease-out:cubic-bezier(0.16,1,0.3,1);
+  --ease-in:cubic-bezier(0.4,0,1,1);
+  --dur:220ms;
+}
+
+[data-theme="light"] {
+  --bg:        #f5f8f9;
+  --bg-2:      #eaf1f3;
+  --bg-3:      #ddeaed;
+  --border:    rgba(21,46,58,0.1);
+  --border-lg: rgba(21,46,58,0.16);
+  --text:      #0e1e26;
+  --text-muted:#4a6a76;
+  --text-faint:#9ab5bc;
+  --accent:    #e8705a;
+  --accent-dim:rgba(232,112,90,0.1);
+  --accent-glow:rgba(232,112,90,0.22);
+  --accent-2:  #5aabb4;
+}
+
+/* ── BASE ─────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-font-smoothing:antialiased;text-size-adjust:none;scroll-behavior:smooth;scroll-padding-top:76px}
+body{min-height:100dvh;background:var(--bg);color:var(--text);font-family:var(--font);font-size:var(--text-base);line-height:1.65;overflow-x:hidden}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
+ul{list-style:none}
+::selection{background:var(--accent);color:var(--navy)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:var(--radius-sm)}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}}
+
+/* Noise */
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:999;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:0.025}
+
+/* ── CURSOR ───────────────────────────────────────── */
+.cursor{position:fixed;width:7px;height:7px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:screen}
+.cursor-ring{position:fixed;width:34px;height:34px;border:1.5px solid var(--accent);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width 0.35s var(--ease-out),height 0.35s var(--ease-out);opacity:0.5}
+@media(hover:none){.cursor,.cursor-ring{display:none}}
+
+/* ── NAV ──────────────────────────────────────────── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:500;height:72px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(var(--space-4),4vw,var(--space-12));
+  transition:background var(--dur),border-color var(--dur);border-bottom:1px solid transparent}
+.nav.scrolled{background:oklch(from var(--bg) l c h / 0.9);backdrop-filter:blur(18px);border-color:var(--border)}
+.nav__logo{display:flex;align-items:center;gap:var(--space-3);z-index:10}
+.nav__wordmark{font-size:1.15rem;font-weight:700;color:var(--text);letter-spacing:-0.02em}
+.nav__tagline{font-size:0.55rem;font-weight:400;color:var(--text-muted);letter-spacing:0.04em;line-height:1.2;max-width:120px}
+.nav__links{display:flex;align-items:center;gap:var(--space-8)}
+.nav__links a{font-size:var(--text-sm);font-weight:400;color:var(--text-muted);transition:color var(--dur)}
+.nav__links a:hover{color:var(--text)}
+.nav__right{display:flex;align-items:center;gap:var(--space-3)}
+.nav__theme{width:34px;height:34px;border-radius:var(--radius-full);border:1px solid var(--border);display:grid;place-items:center;color:var(--text-muted);transition:all var(--dur)}
+.nav__theme:hover{border-color:var(--accent);color:var(--accent)}
+.nav__cta{padding:var(--space-2) var(--space-5);border-radius:var(--radius-full);background:var(--accent);color:var(--navy);font-size:var(--text-sm);font-weight:600;transition:transform var(--dur) var(--ease-out),box-shadow var(--dur)}
+.nav__cta:hover{transform:translateY(-1px);box-shadow:0 0 20px var(--accent-glow)}
+.nav__hbg{display:none;flex-direction:column;gap:5px;padding:var(--space-2)}
+.nav__hbg span{display:block;width:22px;height:1.5px;background:var(--text);border-radius:2px;transition:all 0.3s var(--ease-out)}
+.nav__hbg.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.nav__hbg.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.nav__hbg.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+@media(max-width:768px){
+  .nav__links{display:none;position:fixed;inset:72px 0 0;background:var(--bg-2);flex-direction:column;justify-content:center;align-items:center;gap:var(--space-10)}
+  .nav__links.open{display:flex}
+  .nav__links a{font-size:var(--text-xl);color:var(--text)}
+  .nav__hbg{display:flex}
+  .nav__cta{display:none}
+  .nav__tagline{display:none}
+}
+
+/* ── HERO ─────────────────────────────────────────── */
+.hero{min-height:100svh;display:grid;align-items:center;
+  padding:96px clamp(var(--space-4),4vw,var(--space-12)) var(--space-20);
+  max-width:1320px;margin-inline:auto;position:relative}
+.hero__bg-pattern{
+  position:absolute;right:-80px;top:10%;width:min(520px,55vw);height:min(520px,55vw);
+  opacity:0.06;pointer-events:none;
+  animation:patternFloat 10s ease-in-out infinite;
+}
+@keyframes patternFloat{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-30px) rotate(3deg)}}
+.hero__glow{
+  position:absolute;right:5%;top:15%;width:min(500px,50vw);height:min(500px,50vw);
+  border-radius:50%;background:radial-gradient(circle,rgba(245,144,124,0.07) 0%,rgba(123,202,209,0.04) 50%,transparent 70%);
+  filter:blur(50px);pointer-events:none;animation:orbFloat 9s ease-in-out infinite;
+}
+@keyframes orbFloat{0%,100%{transform:scale(1)}50%{transform:scale(1.08) translateY(-20px)}}
+
+.hero__kicker{
+  display:inline-flex;align-items:center;gap:var(--space-2);
+  font-size:var(--text-xs);font-weight:500;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--accent-2);margin-bottom:var(--space-6);
+  opacity:0;animation:fadeUp 0.7s var(--ease-out) 0.2s forwards;
+}
+.hero__dot{width:6px;height:6px;border-radius:50%;background:var(--accent-2);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+.hero__h1{
+  font-size:var(--text-hero);font-weight:800;line-height:0.95;letter-spacing:-0.04em;
+  margin-bottom:var(--space-8);
+  opacity:0;animation:fadeUp 0.8s var(--ease-out) 0.35s forwards;
+}
+.hero__h1 .c-coral{color:var(--accent)}
+.hero__h1 .c-teal{color:var(--accent-2)}
+.hero__h1 .outline{
+  -webkit-text-stroke:2px var(--accent);color:transparent;
+  transition:color 0.4s,-webkit-text-stroke 0.4s;
+}
+.hero__h1 .outline:hover{color:var(--accent);-webkit-text-stroke-width:0}
+.hero__sub{
+  font-size:var(--text-lg);font-weight:300;color:var(--text-muted);
+  max-width:52ch;line-height:1.7;margin-bottom:var(--space-10);
+  opacity:0;animation:fadeUp 0.7s var(--ease-out) 0.5s forwards;
+}
+.hero__actions{
+  display:flex;align-items:center;gap:var(--space-4);flex-wrap:wrap;
+  opacity:0;animation:fadeUp 0.6s var(--ease-out) 0.65s forwards;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+.btn-coral{
+  display:inline-flex;align-items:center;gap:var(--space-2);
+  padding:var(--space-3) var(--space-8);border-radius:var(--radius-full);
+  background:var(--accent);color:var(--navy);font-size:var(--text-sm);font-weight:600;
+  transition:transform var(--dur) var(--ease-out),box-shadow var(--dur);
+}
+.btn-coral:hover{transform:translateY(-2px);box-shadow:0 0 28px var(--accent-glow)}
+.btn-coral:active{transform:translateY(0)}
+.btn-outline{
+  display:inline-flex;align-items:center;gap:var(--space-2);
+  padding:var(--space-3) var(--space-6);border-radius:var(--radius-full);
+  border:1.5px solid var(--border-lg);color:var(--text-muted);font-size:var(--text-sm);font-weight:400;
+  transition:border-color var(--dur),color var(--dur),transform var(--dur) var(--ease-out);
+}
+.btn-outline:hover{border-color:var(--accent-2);color:var(--accent-2);transform:translateY(-2px)}
+
+/* ── TICKER ───────────────────────────────────────── */
+.ticker{border-block:1px solid var(--border);overflow:hidden;padding-block:var(--space-4);background:var(--bg-2)}
+.ticker__track{display:flex;gap:var(--space-10);width:max-content;animation:marquee 22s linear infinite}
+.ticker__track:hover{animation-play-state:paused}
+@keyframes marquee{to{transform:translateX(-50%)}}
+.ticker__item{display:flex;align-items:center;gap:var(--space-3);font-size:var(--text-xs);text-transform:uppercase;letter-spacing:0.1em;color:var(--text-faint);white-space:nowrap;font-weight:500}
+.ticker__dot{color:var(--accent);font-size:0.55rem}
+
+/* ── SECTION ──────────────────────────────────────── */
+.section{padding-block:clamp(var(--space-16),10vw,var(--space-24));position:relative}
+.section--alt{background:var(--bg-2)}
+.container{max-width:1200px;margin-inline:auto;padding-inline:clamp(var(--space-4),4vw,var(--space-12))}
+.eyebrow{display:inline-flex;align-items:center;gap:var(--space-2);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;font-weight:600;color:var(--accent);margin-bottom:var(--space-5)}
+.eyebrow::before{content:'';width:14px;height:2px;background:var(--accent);border-radius:2px}
+.eyebrow--teal{color:var(--accent-2)}
+.eyebrow--teal::before{background:var(--accent-2)}
+.section__title{font-size:var(--text-2xl);font-weight:700;line-height:1.05;letter-spacing:-0.03em;color:var(--text);margin-bottom:var(--space-4)}
+.section__title .c-coral{color:var(--accent)}
+.section__title .c-teal{color:var(--accent-2)}
+.section__title .c-dim{color:var(--text-faint)}
+
+/* ── SCROLL REVEALS ──────────────────────────────── */
+.reveal{opacity:1}
+@supports(animation-timeline:scroll()){
+  .reveal{opacity:0;animation:rfade linear both;animation-timeline:view();animation-range:entry 0% entry 70%}
+  .reveal-clip{opacity:0;clip-path:inset(15% 0 0 0);animation:rclip linear both;animation-timeline:view();animation-range:entry 0% entry 80%}
+}
+@keyframes rfade{to{opacity:1}}
+@keyframes rclip{to{opacity:1;clip-path:inset(0 0 0 0)}}
+
+/* ── ABOUT ────────────────────────────────────────── */
+.about__grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-16);align-items:start}
+.about__big{font-size:clamp(6rem,14vw,12rem);font-weight:800;line-height:0.85;letter-spacing:-0.05em;
+  background:linear-gradient(180deg,var(--text-faint) 0%,transparent 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:var(--space-5);user-select:none}
+.about__desc{font-size:var(--text-lg);font-weight:300;color:var(--text-muted);line-height:1.7;max-width:48ch;margin-bottom:var(--space-8)}
+.about__chips{display:flex;flex-wrap:wrap;gap:var(--space-2)}
+.chip{padding:var(--space-1) var(--space-4);border-radius:var(--radius-full);border:1px solid var(--border-lg);font-size:var(--text-xs);font-weight:500;color:var(--text-muted);transition:all var(--dur)}
+.chip:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-dim);cursor:default}
+.chip--teal:hover{border-color:var(--accent-2);color:var(--accent-2);background:rgba(123,202,209,0.1)}
+.about__stats{padding-top:var(--space-8)}
+.about__stat{padding-block:var(--space-7);border-bottom:1px solid var(--border);display:flex;align-items:baseline;gap:var(--space-4)}
+.about__stat:first-child{border-top:1px solid var(--border)}
+.about__stat-num{font-size:var(--text-2xl);font-weight:700;color:var(--accent);line-height:1;min-width:80px}
+.about__stat-label{font-size:var(--text-sm);font-weight:300;color:var(--text-muted);line-height:1.5}
+@media(max-width:768px){.about__grid{grid-template-columns:1fr;gap:var(--space-10)}}
+
+/* ── SERVICES ─────────────────────────────────────── */
+.svc-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:var(--space-12);flex-wrap:wrap;gap:var(--space-6)}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-radius:var(--radius-xl);overflow:hidden;border:1px solid var(--border)}
+.svc-card{background:var(--bg);padding:var(--space-10) var(--space-8);display:flex;flex-direction:column;gap:var(--space-5);transition:background var(--dur) var(--ease-out);cursor:default;position:relative;overflow:hidden}
+.svc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent-2));transform:scaleX(0);transform-origin:left;transition:transform 0.4s var(--ease-out)}
+.svc-card:hover{background:var(--bg-3)}
+.svc-card:hover::before{transform:scaleX(1)}
+.svc-card--wide{grid-column:span 2}
+.svc-card__num{font-size:var(--text-xs);font-weight:700;color:var(--text-faint);letter-spacing:0.1em;font-family:var(--font)}
+.svc-card__title{font-size:var(--text-xl);font-weight:700;line-height:1.15;transition:color var(--dur)}
+.svc-card:hover .svc-card__title{color:var(--accent)}
+.svc-card__desc{font-size:var(--text-sm);font-weight:300;color:var(--text-muted);line-height:1.65;flex:1}
+.svc-card__arrow{width:30px;height:30px;border-radius:var(--radius-full);border:1px solid var(--border);display:grid;place-items:center;color:var(--text-faint);margin-top:var(--space-2);transition:all 0.35s var(--ease-out)}
+.svc-card:hover .svc-card__arrow{border-color:var(--accent);color:var(--accent);background:var(--accent-dim);transform:rotate(45deg)}
+@media(max-width:768px){.svc-grid{grid-template-columns:1fr}.svc-card--wide{grid-column:span 1}}
+
+/* ── SERVICE BIG TICKER ──────────────────────────── */
+.svc-ticker{border-block:1px solid var(--border);overflow:hidden;padding-block:var(--space-5)}
+.svc-ticker__track{display:flex;width:max-content;animation:marquee 28s linear infinite;gap:var(--space-8)}
+.svc-ticker__item{font-size:var(--text-xl);font-weight:700;color:transparent;-webkit-text-stroke:1.5px var(--border-lg);white-space:nowrap;letter-spacing:-0.02em;transition:color 0.3s,-webkit-text-stroke 0.3s;cursor:default}
+.svc-ticker__item:hover{color:var(--accent);-webkit-text-stroke-color:transparent}
+.svc-ticker__sep{color:var(--accent-2);-webkit-text-stroke-color:var(--accent-2);font-size:1rem}
+
+/* ── APPROACH ─────────────────────────────────────── */
+.approach__rows{margin-top:var(--space-12)}
+.approach__row{
+  display:grid;grid-template-columns:72px 1fr 48px;align-items:center;gap:var(--space-8);
+  padding-block:var(--space-8);border-bottom:1px solid var(--border);
+  transition:background var(--dur);cursor:default;
+  padding-inline:clamp(var(--space-4),4vw,var(--space-12));
+  margin-inline:calc(-1 * clamp(var(--space-4),4vw,var(--space-12)));
+}
+.approach__row:hover{background:var(--bg-2)}
+.approach__row-num{font-size:2.8rem;font-weight:800;color:var(--text-faint);line-height:1;transition:color var(--dur)}
+.approach__row:hover .approach__row-num{color:var(--accent)}
+.approach__row-title{font-size:var(--text-xl);font-weight:700;transition:color var(--dur);margin-bottom:var(--space-2)}
+.approach__row:hover .approach__row-title{color:var(--accent)}
+.approach__row-desc{font-size:var(--text-sm);font-weight:300;color:var(--text-muted);max-width:54ch;line-height:1.6}
+.approach__row-icon{width:44px;height:44px;border-radius:var(--radius-full);border:1px solid var(--border);display:grid;place-items:center;color:var(--text-faint);flex-shrink:0;transition:all 0.4s var(--ease-out)}
+.approach__row:hover .approach__row-icon{border-color:var(--accent-2);color:var(--accent-2);background:rgba(123,202,209,0.1);transform:rotate(90deg)}
+@media(max-width:600px){.approach__row{grid-template-columns:60px 1fr}.approach__row-icon{display:none}}
+
+/* ── INDUSTRY PILLS ──────────────────────────────── */
+.industry{border-block:1px solid var(--border);overflow:hidden;padding-block:var(--space-3);background:var(--bg-2)}
+.industry__track{display:flex;width:max-content;animation:marquee 32s linear infinite reverse;gap:var(--space-4)}
+.industry__pill{padding:var(--space-2) var(--space-5);border-radius:var(--radius-full);border:1px solid var(--border);font-size:var(--text-xs);font-weight:500;letter-spacing:0.04em;color:var(--text-muted);white-space:nowrap;transition:all var(--dur);cursor:default}
+.industry__pill:hover{border-color:var(--accent-2);color:var(--accent-2);background:rgba(123,202,209,0.08)}
+
+/* ── WHY US ───────────────────────────────────────── */
+.why__grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);margin-top:var(--space-12)}
+.why__card{background:var(--bg-2);border:1px solid var(--border);border-radius:var(--radius-xl);padding:var(--space-8);display:flex;flex-direction:column;gap:var(--space-4);transition:border-color var(--dur),transform var(--dur) var(--ease-out),box-shadow var(--dur);position:relative;overflow:hidden}
+.why__card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(245,144,124,0.04),transparent);opacity:0;transition:opacity var(--dur)}
+.why__card:hover{border-color:var(--border-lg);transform:translateY(-3px);box-shadow:0 14px 40px rgba(0,0,0,0.25)}
+.why__card:hover::after{opacity:1}
+.why__card--coral{background:var(--accent);border-color:var(--accent)}
+.why__card--coral .why__card-num,.why__card--coral .why__card-desc{color:rgba(21,46,58,0.65)}
+.why__card--coral .why__card-title{color:var(--navy)}
+.why__card--coral::after{display:none}
+.why__card-num{font-size:var(--text-xs);font-weight:700;color:var(--text-faint);letter-spacing:0.1em}
+.why__card-title{font-size:var(--text-xl);font-weight:700;line-height:1.2;color:var(--text)}
+.why__card-desc{font-size:var(--text-sm);font-weight:300;color:var(--text-muted);line-height:1.65}
+@media(max-width:640px){.why__grid{grid-template-columns:1fr}}
+
+/* ── TESTIMONIALS ─────────────────────────────────── */
+.testi__wrap{overflow:hidden}
+.testi__track{display:flex;gap:var(--space-4);transition:transform 0.7s var(--ease-out)}
+.testi-card{min-width:min(460px,82vw);background:var(--bg-2);border:1px solid var(--border);border-radius:var(--radius-xl);padding:var(--space-8);flex-shrink:0}
+.testi-card__quote{font-size:var(--text-lg);font-weight:400;font-style:italic;line-height:1.5;color:var(--text);margin-bottom:var(--space-6)}
+.testi-card__quote::before{content:'\201C';color:var(--accent);font-size:var(--text-2xl);line-height:0;vertical-align:-0.28em;margin-right:2px;font-style:normal}
+.testi-card__author{display:flex;align-items:center;gap:var(--space-3)}
+.testi-ava{width:36px;height:36px;border-radius:50%;background:var(--accent-dim);border:1.5px solid var(--accent);display:grid;place-items:center;font-size:var(--text-xs);font-weight:700;color:var(--accent);flex-shrink:0}
+.testi-ava--teal{background:rgba(123,202,209,0.1);border-color:var(--accent-2);color:var(--accent-2)}
+.testi__name{font-size:var(--text-sm);font-weight:500}
+.testi__role{font-size:var(--text-xs);color:var(--text-muted);font-weight:300}
+.testi__nav{display:flex;gap:var(--space-2);margin-top:var(--space-8)}
+.testi__dot{width:8px;height:8px;border-radius:50%;background:var(--border-lg);transition:background var(--dur),width 0.3s var(--ease-out);cursor:pointer;border:none}
+.testi__dot.active{width:24px;border-radius:var(--radius-full);background:var(--accent)}
+
+/* ── CTA ──────────────────────────────────────────── */
+.cta-block{
+  background:var(--navy);border:1px solid rgba(123,202,209,0.2);border-radius:var(--radius-xl);
+  padding:clamp(var(--space-12),6vw,var(--space-20)) clamp(var(--space-8),5vw,var(--space-20));
+  text-align:center;position:relative;overflow:hidden;
+}
+.cta-block::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 110%,rgba(245,144,124,0.12),transparent);pointer-events:none}
+.cta-block::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 40% at 50% 0%,rgba(123,202,209,0.06),transparent);pointer-events:none}
+.cta-block__title{font-size:var(--text-2xl);font-weight:700;line-height:1.05;letter-spacing:-0.03em;color:var(--white);margin-bottom:var(--space-4);position:relative}
+.cta-block__title .c-coral{color:var(--coral)}
+.cta-block__title .c-teal{color:var(--teal)}
+.cta-block__sub{font-size:var(--text-base);font-weight:300;color:rgba(240,244,245,0.6);max-width:48ch;margin-inline:auto;margin-bottom:var(--space-10);position:relative}
+.cta-block__btns{display:flex;justify-content:center;gap:var(--space-4);flex-wrap:wrap;position:relative}
+
+/* ── FOOTER ───────────────────────────────────────── */
+.footer{background:var(--navy);border-top:1px solid rgba(123,202,209,0.1);padding-block:var(--space-16)}
+.footer__top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:var(--space-10);margin-bottom:var(--space-12)}
+.footer__logo{font-size:1.2rem;font-weight:700;color:var(--white);margin-bottom:var(--space-2)}
+.footer__logo span{color:var(--coral)}
+.footer__slogan{font-size:var(--text-xs);font-weight:400;color:var(--teal);letter-spacing:0.04em;margin-bottom:var(--space-5)}
+.footer__desc{font-size:var(--text-sm);font-weight:300;color:rgba(240,244,245,0.5);max-width:30ch;line-height:1.6}
+.footer__col-head{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:0.1em;color:rgba(240,244,245,0.3);margin-bottom:var(--space-5);font-weight:600}
+.footer__links{display:flex;flex-direction:column;gap:var(--space-3)}
+.footer__links a{font-size:var(--text-sm);font-weight:300;color:rgba(240,244,245,0.55);transition:color var(--dur)}
+.footer__links a:hover{color:var(--coral)}
+.footer__btm{border-top:1px solid rgba(123,202,209,0.1);padding-top:var(--space-6);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:var(--space-4)}
+.footer__copy{font-size:var(--text-xs);font-weight:300;color:rgba(240,244,245,0.3)}
+.footer__socials{display:flex;gap:var(--space-3)}
+.footer__soc{width:32px;height:32px;border-radius:50%;border:1px solid rgba(123,202,209,0.15);display:grid;place-items:center;color:rgba(240,244,245,0.4);transition:all var(--dur)}
+.footer__soc:hover{border-color:var(--coral);color:var(--coral);background:rgba(245,144,124,0.1)}
+@media(max-width:768px){.footer__top{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.footer__top{grid-template-columns:1fr}}
+
+.divider{border:none;border-top:1px solid var(--border)}
+
+
+/* ── LOGO IMAGE SWITCHING ─────────────────────────── */
+[data-theme="dark"]  .nav__logo-dark  { display: block !important; }
+[data-theme="dark"]  .nav__logo-light { display: none  !important; }
+[data-theme="light"] .nav__logo-dark  { display: none  !important; }
+[data-theme="light"] .nav__logo-light { display: block !important; }
+.nav__logo { gap: 0; }
+
+/* ── HERO LOGO WATERMARK ──────────────────────────── */
+.hero__logo-wm {
+  position: absolute;
+  right: clamp(var(--space-4),5vw,var(--space-16));
+  top: 50%;
+  transform: translateY(-50%);
+  width: min(340px, 38vw);
+  opacity: 0.04;
+  pointer-events: none;
+  filter: blur(0.5px);
+  animation: patternFloat 10s ease-in-out infinite;
+}
+@media(max-width:768px){ .hero__logo-wm { display: none; } }
+
+/* ── FOOTER LOGO IMAGE ────────────────────────────── */
+.footer__logo-img {
+  height: 28px;
+  width: auto;
+  margin-bottom: var(--space-3);
+  opacity: 0.9;
+}
+
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+<div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+<!-- NAV -->
+<header class="nav" id="nav" role="banner">
+  <a href="#" class="nav__logo" aria-label="twigs&ink home">
+    <!-- Brand logos: dark-bg version (white text) and light-bg version (dark text) -->
+    <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iTGF5ZXJfMiIgZGF0YS1uYW1lPSJMYXllciAyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA3ODYuMDkgMTQyLjA5Ij4KICA8ZGVmcz4KICAgIDxzdHlsZT4KICAgICAgLmNscy0xIHsKICAgICAgICBmaWxsOiAjZjU5MDdjOwogICAgICB9CgogICAgICAuY2xzLTEsIC5jbHMtMiwgLmNscy0zIHsKICAgICAgICBzdHJva2Utd2lkdGg6IDBweDsKICAgICAgfQoKICAgICAgLmNscy0yIHsKICAgICAgICBmaWxsOiAjN2JjYWQxOwogICAgICB9CgogICAgICAuY2xzLTMgewogICAgICAgIGZpbGw6ICNmZmY7CiAgICAgIH0KICAgIDwvc3R5bGU+CiAgPC9kZWZzPgogIDxnIGlkPSJf0KHQu9C+0LlfMSIgZGF0YS1uYW1lPSLQodC70L7QuSAxIj4KICAgIDxnPgogICAgICA8cGF0aCBjbGFzcz0iY2xzLTMiIGQ9Ik0xOTAuNDYsNTQuNDNoMjAuMjdsLTQuODItMTQuOTRoLTE1LjQ1di0yMi4wMWgtMTcuODN2NzkuOTdjMCw0Ljg0LDEuMzEsOC41NSwzLjkxLDExLjE3LDIuNjIsMi42LDYuMzMsMy45MSwxMS4xNywzLjkxaDIzLjAydi0xNS4wN2gtMjAuMjd2LTQzLjAyWiIvPgogICAgICA8cGF0aCBjbGFzcz0iY2xzLTMiIGQ9Ik0zMDIuNzUsMzkuNWwtMTMuNDcsNDguODQtMTQuMi00OC44NGgtMTYuMzhsLTE0LjMzLDQ4Ljg0LTEzLjQ3LTQ4Ljg0aC0xNy44M2wyMy4zMyw3My4wM2gxNS43OGwxNC42NC00OS4xMSwxNC42Myw0OS4xMWgxNS44bDIzLjMzLTczLjAzaC0xNy44M1oiLz4KICAgICAgPHBhdGggY2xhc3M9ImNscy0zIiBkPSJNMzI4LjM5LDM5LjV2NzMuMDNoMTcuODNWMzkuNWgtMTcuODNaTTMyNy42NiwxMC45N3YxNy42OWgxOS4xNFYxMC45N2gtMTkuMTRaIi8+CiAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMyIgZD0iTTQxMy4xNSwzOS41djguMjZjLTQuODQtNi4yOC0xMS45OC05LjQxLTIxLjQ0LTkuNDEtMTAuNzIsMC0xOS4xNSwzLjQ2LTI1LjMsMTAuMzYtNi4xMyw2LjktOS4xOSwxNi05LjE5LDI3LjMxczMuMDgsMjAuNDEsOS4yOCwyNy4zMWM2LjE4LDYuOTIsMTQuNjgsMTAuMzYsMjUuNSwxMC4zNiw0LjUzLDAsOC43Mi0uODQsMTIuNi0yLjUzLDMuODUtMS42OSw2LjcxLTMuOTQsOC41NS02Ljc1djIzLjQ3aC00NS43OXYxNC4yMWg0OC41NGM0LjczLDAsOC40MS0xLjM0LDExLjA4LTMuOTksMi42NS0yLjY1LDMuOTgtNi4zNSwzLjk4LTExLjA4VjM5LjVoLTE3LjgxWk00MDguODcsOTIuMjRjLTMuNjEsNC4wNi04LjQxLDYuMDktMTQuNCw2LjA5cy0xMC42My0yLjAzLTE0LjItNi4wOWMtMy41OC00LjA2LTUuMzctOS40Ni01LjM3LTE2LjIzczEuNzktMTIuMTcsNS4zNy0xNi4yM2MzLjU2LTQuMDYsOC4yOS02LjA5LDE0LjItNi4wOXMxMC43OSwyLjAzLDE0LjQsNi4wOWMzLjYzLDQuMDYsNS40NCw5LjQ2LDUuNDQsMTYuMjNzLTEuODEsMTIuMTctNS40NCwxNi4yM1oiLz4KICAgICAgPHBhdGggY2xhc3M9ImNscy0zIiBkPSJNNDk3LjExLDc5LjcxYy0xLjUtMy4wNS0zLjQyLTUuMy01LjgtNi43NS0yLjM2LTEuNDUtNC45OS0yLjU1LTcuOS0zLjMyLTIuODktLjc3LTUuNzYtMS4zMS04LjYyLTEuNi0yLjg0LS4yOS01LjQ1LS42Ny03LjgxLTEuMTUtMi4zNy0uNDgtNC4zLTEuMzEtNS44LTIuNDYtMS41LTEuMTctMi4yNS0yLjgtMi4yNS00Ljk0LDAtMi40MS45NS00LjMyLDIuODQtNS43MSwxLjg4LTEuNDEsNC40MS0yLjEsNy42MS0yLjFzNS45LjkxLDguNDcsMi43NWMyLjU2LDEuODIsNC4wNCw0LjM0LDQuNDIsNy41MmgxNi4zOGMtLjQtNy4xNC0zLjI5LTEyLjg3LTguNzEtMTcuMTYtNS40LTQuMy0xMi40MS02LjQ1LTIxLjAxLTYuNDUtNy41MiwwLTEzLjc1LDIuMDMtMTguNjksNi4wOS00LjkyLDQuMDQtNy4zOCw5LjI2LTcuMzgsMTUuNjQsMCw1LjcsMS4zOCwxMC4xOSw0LjEzLDEzLjQ3LDIuNzUsMy4yOSw2LjA3LDUuNDQsMTAsNi40NSwzLjkxLDEuMDIsNy44LDEuNzksMTEuNjcsMi4zMSwzLjg1LjUzLDcuMTYsMS41MSw5LjkxLDIuOTEsMi43NSwxLjM5LDQuMTMsMy41NCw0LjEzLDYuNDQsMCwyLjI0LTEuMDcsNC4xLTMuMTgsNS41OS0yLjEyLDEuNS00Ljg3LDIuMjQtOC4yNiwyLjI0LTMuOTYsMC03LjIzLTEuMDItOS43Ny0zLjA1LTIuNTYtMi4wMy00LjA0LTQuNzgtNC40Mi04LjI2aC0xNi4yM2MuMzgsNy44MywzLjM0LDE0LjA0LDguODQsMTguNjIsNS41MSw0LjU5LDEyLjcsNi44OCwyMS41OCw2Ljg4czE1LjMyLTIuMDYsMjAuNDMtNi4yM2M1LjEzLTQuMTUsNy42OS05LjY1LDcuNjktMTYuNTIsMC00LjQ0LS43Ni04LjE3LTIuMjUtMTEuMjJaIi8+CiAgICAgIDxwb2x5Z29uIGNsYXNzPSJjbHMtMyIgcG9pbnRzPSI1OTAuOTMgNjAuMzcgNTc3LjE4IDgzLjE1IDU2Ni43IDcxLjM3IDU3My41MyA2MC4yMiA1OTAuOTMgNjAuMzciLz4KICAgICAgPHBhdGggY2xhc3M9ImNscy0zIiBkPSJNNTcwLjY0LDM1LjE2YzAsNi43Ni0xLjc2LDEyLjE3LTUuMjgsMTYuMjMtMi40NiwyLjg0LTUuNjEsNS40NS05LjQ2LDcuODVsLTEwLjQxLTExLjdjMi4zNi0xLjM5LDQuMjgtMi43OSw1LjgyLTQuMiwyLjU2LTIuMzYsMy44NC01LjI4LDMuODQtOC43NiwwLTMuMjktMS4wNy01Ljk0LTMuMTgtNy45Ny0yLjEzLTIuMDMtNC44OS0zLjA1LTguMjYtMy4wNXMtNi4xMSwxLjA3LTguMTksMy4xOGMtMS42MiwxLjY3LTIuNjIsMy43My0yLjk2LDYuMjNsLTExLjI1LTEyLjY1Yy44My0xLjE0LDEuNzctMi4yLDIuODQtMy4yMiw1LjAyLTQuNzcsMTEuNTUtNy4xNiwxOS41Ny03LjE2czE0LjUxLDIuMzQsMTkuNDgsNy4wMmM0Ljk3LDQuNjgsNy40NywxMC43Niw3LjQ3LDE4LjE5WiIvPgogICAgICA8cGF0aCBjbGFzcz0iY2xzLTMiIGQ9Ik01ODEuNTIsOTcuMDJsLTYzLjI0LTcxLjE0Yy0xLjE0LDIuOTgtMS42OSw2LjIzLTEuNjksOS44NCwwLDYuMzgsMi45OSwxMy41Myw4Ljk4LDIxLjQ2LTUuNywyLjk5LTEwLjE1LDYuNTQtMTMuMzksMTAuNjMtMy4yNCw0LjExLTQuODUsOS40LTQuODUsMTUuODcsMCw5LjE5LDIuOTgsMTYuNDcsOC45OCwyMS44OSw1Ljk5LDUuNCwxMy43MSw4LjEsMjMuMTgsOC4xLDEwLjUzLDAsMTkuMDctMy44LDI1LjY0LTExLjQ0bDQuNDksNS4wOGMzLjE4LDMuNDgsNy41NCw1LjIxLDEzLjA0LDUuMjFoMTIuNnYtMTUuNWgtMTMuNzVaTTUzOS40OSw5OC4wNGMtNC41NCwwLTguMTktMS4yNi0xMC45NC0zLjc3LTIuNzUtMi41MS00LjEzLTUuOTQtNC4xMy0xMC4yOSwwLTUuNywzLjgyLTEwLjU3LDExLjQ0LTE0LjYzbDE4Ljk4LDIxLjNjLTMuNTYsNC45Mi04LjY5LDcuMzgtMTUuMzUsNy4zOFoiLz4KICAgICAgPHBhdGggY2xhc3M9ImNscy0zIiBkPSJNNjAzLjEsMzkuNXY3My4wM2gxNy44M1YzOS41aC0xNy44M1pNNjAyLjM3LDEwLjk3djE3LjY5aDE5LjEyVjEwLjk3aC0xOS4xMloiLz4KICAgICAgPHBhdGggY2xhc3M9ImNscy0zIiBkPSJNNjk0LjM1LDQ2LjM4Yy00Ljk3LTUuMzUtMTEuNTMtOC4wNC0xOS42My04LjA0LTUuMjEsMC05LjgzLDEuMDgtMTMuODQsMy4yNS00LjAxLDIuMTktNi45OSw1LjI1LTguOTEsOS4yMXYtMTEuMzFoLTE3LjgzdjczLjAzaDE3Ljgzdi0zOS44NGMwLTUuNDIsMS41Ny05Ljg2LDQuNzItMTMuMzQsMy4xMy0zLjQ4LDcuMTYtNS4yMSwxMi4xLTUuMjEsNC41MywwLDguMjMsMS41NywxMS4wOCw0LjcsMi44NCwzLjE1LDQuMjcsNy4yMyw0LjI3LDEyLjI1djQxLjQ0aDE3LjY3di00NS4yMWMwLTguNi0yLjQ4LTE1LjU3LTcuNDUtMjAuOTRaIi8+CiAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMyIgZD0iTTc1My45MSw2OC4wNWwyOS43Mi0yOC41NWgtMjIuNjFsLTI3LjgzLDI2LjUyVjEwLjk3aC0xNy45N3YxMDEuNTZoMTcuOTd2LTI0LjM1bDguNTUtOC4yNCwyMi45LDMyLjU5aDIxLjQ0bC0zMi4xOC00NC40OFoiLz4KICAgICAgPGc+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNNjcuMTIsOC44N3YyOC41NmwtMjAuMzktMjAuMzljNi42NC0zLjA5LDEzLjU0LTUuODMsMjAuMzktOC4xN1oiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0zNy45NSw2Ni40MWwtOS4zNSw5LjM2LDM4LjUyLDM4LjUydjE0QzM0Ljc5LDEyMy45MywwLDk1LjMyLDAsNjMuNjljMC0xNS4xLDE0LjgyLTI5LjIyLDM0LjM3LTQwLjMxbDMyLjc1LDMyLjc1djM5LjQ0bC0yOS4xNy0yOS4xN1oiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0xMzUuNTMsMTEuODJsLTU1LjE4LDU1LjE4VjQuODVjMTEuNjYtMy4xMiwyMi41Mi00Ljg1LDMwLjg3LTQuODUsMTIuMTEsMCwxOS42Myw0LjQ5LDI0LjMxLDExLjgyWiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTE0My4wOCw3MC41NmMwLDMyLjczLTMwLjE2LDU2LjAxLTYyLjcyLDU4LjE1di00M2w2MC40LTYwLjRjMi44NywxMi45NCwyLjMyLDI5LjI5LDIuMzIsNDUuMjVaIi8+CiAgICAgIDwvZz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPg==" alt="twigs&amp;ink" class="nav__logo-img nav__logo-dark" height="32" style="height:32px;width:auto;display:block"/>
+    <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iTGF5ZXJfMiIgZGF0YS1uYW1lPSJMYXllciAyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA3ODYuMDkgMTQyLjA5Ij4KICA8ZGVmcz4KICAgIDxzdHlsZT4KICAgICAgLmNscy0xIHsKICAgICAgICBmaWxsOiAjZjU5MDdjOwogICAgICB9CgogICAgICAuY2xzLTEsIC5jbHMtMiwgLmNscy0zIHsKICAgICAgICBzdHJva2Utd2lkdGg6IDBweDsKICAgICAgfQoKICAgICAgLmNscy0yIHsKICAgICAgICBmaWxsOiAjMTUyZTNhOwogICAgICB9CgogICAgICAuY2xzLTMgewogICAgICAgIGZpbGw6ICM3YmNhZDE7CiAgICAgIH0KICAgIDwvc3R5bGU+CiAgPC9kZWZzPgogIDxnIGlkPSJf0KHQu9C+0LlfMSIgZGF0YS1uYW1lPSLQodC70L7QuSAxIj4KICAgIDxnPgogICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0xOTAuNDYsNTQuNDNoMjAuMjdsLTQuODItMTQuOTRoLTE1LjQ1di0yMi4wMWgtMTcuODN2NzkuOTdjMCw0Ljg0LDEuMzEsOC41NSwzLjkxLDExLjE3LDIuNjIsMi42LDYuMzMsMy45MSwxMS4xNywzLjkxaDIzLjAydi0xNS4wN2gtMjAuMjd2LTQzLjAyWiIvPgogICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0zMDIuNzUsMzkuNWwtMTMuNDcsNDguODQtMTQuMi00OC44NGgtMTYuMzhsLTE0LjMzLDQ4Ljg0LTEzLjQ3LTQ4Ljg0aC0xNy44M2wyMy4zMyw3My4wM2gxNS43OGwxNC42NC00OS4xMSwxNC42Myw0OS4xMWgxNS44bDIzLjMzLTczLjAzaC0xNy44M1oiLz4KICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMzI4LjM5LDM5LjV2NzMuMDNoMTcuODNWMzkuNWgtMTcuODNaTTMyNy42NiwxMC45N3YxNy42OWgxOS4xNFYxMC45N2gtMTkuMTRaIi8+CiAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTQxMy4xNSwzOS41djguMjZjLTQuODQtNi4yOC0xMS45OC05LjQxLTIxLjQ0LTkuNDEtMTAuNzIsMC0xOS4xNSwzLjQ2LTI1LjMsMTAuMzYtNi4xMyw2LjktOS4xOSwxNi05LjE5LDI3LjMxczMuMDgsMjAuNDEsOS4yOCwyNy4zMWM2LjE4LDYuOTIsMTQuNjgsMTAuMzYsMjUuNSwxMC4zNiw0LjUzLDAsOC43Mi0uODQsMTIuNi0yLjUzLDMuODUtMS42OSw2LjcxLTMuOTQsOC41NS02Ljc1djIzLjQ3aC00NS43OXYxNC4yMWg0OC41NGM0LjczLDAsOC40MS0xLjM0LDExLjA4LTMuOTksMi42NS0yLjY1LDMuOTgtNi4zNSwzLjk4LTExLjA4VjM5LjVoLTE3LjgxWk00MDguODcsOTIuMjRjLTMuNjEsNC4wNi04LjQxLDYuMDktMTQuNCw2LjA5cy0xMC42My0yLjAzLTE0LjItNi4wOWMtMy41OC00LjA2LTUuMzctOS40Ni01LjM3LTE2LjIzczEuNzktMTIuMTcsNS4zNy0xNi4yM2MzLjU2LTQuMDYsOC4yOS02LjA5LDE0LjItNi4wOXMxMC43OSwyLjAzLDE0LjQsNi4wOWMzLjYzLDQuMDYsNS40NCw5LjQ2LDUuNDQsMTYuMjNzLTEuODEsMTIuMTctNS40NCwxNi4yM1oiLz4KICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNNDk3LjExLDc5LjcxYy0xLjUtMy4wNS0zLjQyLTUuMy01LjgtNi43NS0yLjM2LTEuNDUtNC45OS0yLjU1LTcuOS0zLjMyLTIuODktLjc3LTUuNzYtMS4zMS04LjYyLTEuNi0yLjg0LS4yOS01LjQ1LS42Ny03LjgxLTEuMTUtMi4zNy0uNDgtNC4zLTEuMzEtNS44LTIuNDYtMS41LTEuMTctMi4yNS0yLjgtMi4yNS00Ljk0LDAtMi40MS45NS00LjMyLDIuODQtNS43MSwxLjg4LTEuNDEsNC40MS0yLjEsNy42MS0yLjFzNS45LjkxLDguNDcsMi43NWMyLjU2LDEuODIsNC4wNCw0LjM0LDQuNDIsNy41MmgxNi4zOGMtLjQtNy4xNC0zLjI5LTEyLjg3LTguNzEtMTcuMTYtNS40LTQuMy0xMi40MS02LjQ1LTIxLjAxLTYuNDUtNy41MiwwLTEzLjc1LDIuMDMtMTguNjksNi4wOS00LjkyLDQuMDQtNy4zOCw5LjI2LTcuMzgsMTUuNjQsMCw1LjcsMS4zOCwxMC4xOSw0LjEzLDEzLjQ3LDIuNzUsMy4yOSw2LjA3LDUuNDQsMTAsNi40NSwzLjkxLDEuMDIsNy44LDEuNzksMTEuNjcsMi4zMSwzLjg1LjUzLDcuMTYsMS41MSw5LjkxLDIuOTEsMi43NSwxLjM5LDQuMTMsMy41NCw0LjEzLDYuNDQsMCwyLjI0LTEuMDcsNC4xLTMuMTgsNS41OS0yLjEyLDEuNS00Ljg3LDIuMjQtOC4yNiwyLjI0LTMuOTYsMC03LjIzLTEuMDItOS43Ny0zLjA1LTIuNTYtMi4wMy00LjA0LTQuNzgtNC40Mi04LjI2aC0xNi4yM2MuMzgsNy44MywzLjM0LDE0LjA0LDguODQsMTguNjIsNS41MSw0LjU5LDEyLjcsNi44OCwyMS41OCw2Ljg4czE1LjMyLTIuMDYsMjAuNDMtNi4yM2M1LjEzLTQuMTUsNy42OS05LjY1LDcuNjktMTYuNTIsMC00LjQ0LS43Ni04LjE3LTIuMjUtMTEuMjJaIi8+CiAgICAgIDxwb2x5Z29uIGNsYXNzPSJjbHMtMiIgcG9pbnRzPSI1OTAuOTMgNjAuMzcgNTc3LjE4IDgzLjE1IDU2Ni43IDcxLjM3IDU3My41MyA2MC4yMiA1OTAuOTMgNjAuMzciLz4KICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNNTcwLjY0LDM1LjE2YzAsNi43Ni0xLjc2LDEyLjE3LTUuMjgsMTYuMjMtMi40NiwyLjg0LTUuNjEsNS40NS05LjQ2LDcuODVsLTEwLjQxLTExLjdjMi4zNi0xLjM5LDQuMjgtMi43OSw1LjgyLTQuMiwyLjU2LTIuMzYsMy44NC01LjI4LDMuODQtOC43NiwwLTMuMjktMS4wNy01Ljk0LTMuMTgtNy45Ny0yLjEzLTIuMDMtNC44OS0zLjA1LTguMjYtMy4wNXMtNi4xMSwxLjA3LTguMTksMy4xOGMtMS42MiwxLjY3LTIuNjIsMy43My0yLjk2LDYuMjNsLTExLjI1LTEyLjY1Yy44My0xLjE0LDEuNzctMi4yLDIuODQtMy4yMiw1LjAyLTQuNzcsMTEuNTUtNy4xNiwxOS41Ny03LjE2czE0LjUxLDIuMzQsMTkuNDgsNy4wMmM0Ljk3LDQuNjgsNy40NywxMC43Niw3LjQ3LDE4LjE5WiIvPgogICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik01ODEuNTIsOTcuMDJsLTYzLjI0LTcxLjE0Yy0xLjE0LDIuOTgtMS42OSw2LjIzLTEuNjksOS44NCwwLDYuMzgsMi45OSwxMy41Myw4Ljk4LDIxLjQ2LTUuNywyLjk5LTEwLjE1LDYuNTQtMTMuMzksMTAuNjMtMy4yNCw0LjExLTQuODUsOS40LTQuODUsMTUuODcsMCw5LjE5LDIuOTgsMTYuNDcsOC45OCwyMS44OSw1Ljk5LDUuNCwxMy43MSw4LjEsMjMuMTgsOC4xLDEwLjUzLDAsMTkuMDctMy44LDI1LjY0LTExLjQ0bDQuNDksNS4wOGMzLjE4LDMuNDgsNy41NCw1LjIxLDEzLjA0LDUuMjFoMTIuNnYtMTUuNWgtMTMuNzVaTTUzOS40OSw5OC4wNGMtNC41NCwwLTguMTktMS4yNi0xMC45NC0zLjc3cy00LjEzLTUuOTQtNC4xMy0xMC4yOWMwLTUuNywzLjgyLTEwLjU3LDExLjQ0LTE0LjYzbDE4Ljk4LDIxLjNjLTMuNTYsNC45Mi04LjY5LDcuMzgtMTUuMzUsNy4zOFoiLz4KICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNNjAzLjEsMzkuNXY3My4wM2gxNy44M1YzOS41aC0xNy44M1pNNjAyLjM3LDEwLjk3djE3LjY5aDE5LjEyVjEwLjk3aC0xOS4xMloiLz4KICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNNjk0LjM1LDQ2LjM4Yy00Ljk3LTUuMzUtMTEuNTMtOC4wNC0xOS42My04LjA0LTUuMjEsMC05LjgzLDEuMDgtMTMuODQsMy4yNS00LjAxLDIuMTktNi45OSw1LjI1LTguOTEsOS4yMXYtMTEuMzFoLTE3LjgzdjczLjAzaDE3Ljgzdi0zOS44NGMwLTUuNDIsMS41Ny05Ljg2LDQuNzItMTMuMzQsMy4xMy0zLjQ4LDcuMTYtNS4yMSwxMi4xLTUuMjEsNC41MywwLDguMjMsMS41NywxMS4wOCw0LjcsMi44NCwzLjE1LDQuMjcsNy4yMyw0LjI3LDEyLjI1djQxLjQ0aDE3LjY3di00NS4yMWMwLTguNi0yLjQ4LTE1LjU3LTcuNDUtMjAuOTRaIi8+CiAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTc1My45MSw2OC4wNWwyOS43Mi0yOC41NWgtMjIuNjFsLTI3LjgzLDI2LjUyVjEwLjk3aC0xNy45N3YxMDEuNTZoMTcuOTd2LTI0LjM1bDguNTUtOC4yNCwyMi45LDMyLjU5aDIxLjQ0bC0zMi4xOC00NC40OFoiLz4KICAgICAgPGc+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0zIiBkPSJNNjcuMTIsOC44N3YyOC41NmwtMjAuMzktMjAuMzljNi42NC0zLjA5LDEzLjU0LTUuODMsMjAuMzktOC4xN1oiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0zNy45NSw2Ni40MWwtOS4zNSw5LjM2LDM4LjUyLDM4LjUydjE0QzM0Ljc5LDEyMy45MywwLDk1LjMyLDAsNjMuNjljMC0xNS4xLDE0LjgyLTI5LjIyLDM0LjM3LTQwLjMxbDMyLjc1LDMyLjc1djM5LjQ0bC0yOS4xNy0yOS4xN1oiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0xMzUuNTMsMTEuODJsLTU1LjE4LDU1LjE4VjQuODVjMTEuNjYtMy4xMiwyMi41Mi00Ljg1LDMwLjg3LTQuODUsMTIuMTEsMCwxOS42Myw0LjQ5LDI0LjMxLDExLjgyWiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMyIgZD0iTTE0My4wOCw3MC41NmMwLDMyLjczLTMwLjE2LDU2LjAxLTYyLjcyLDU4LjE1di00M2w2MC40LTYwLjRjMi44NywxMi45NCwyLjMyLDI5LjI5LDIuMzIsNDUuMjVaIi8+CiAgICAgIDwvZz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPg==" alt="twigs&amp;ink" class="nav__logo-img nav__logo-light" height="32" style="height:32px;width:auto;display:none"/>
+  </a>
+
+  <nav aria-label="Primary navigation">
+    <ul class="nav__links" id="navLinks">
+      <li><a href="#about" onclick="closeNav()">About</a></li>
+      <li><a href="#services" onclick="closeNav()">Services</a></li>
+      <li><a href="#approach" onclick="closeNav()">Approach</a></li>
+      <li><a href="#why" onclick="closeNav()">Why Us</a></li>
+      <li><a href="#contact" onclick="closeNav()">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="nav__right">
+    <button class="nav__theme" id="themeBtn" aria-label="Toggle theme">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="themeIco"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <a href="#contact" class="nav__cta">Let's Talk</a>
+    <button class="nav__hbg" id="hbg" aria-expanded="false" aria-label="Menu" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ── HERO ──────────────────────────────────────── -->
+<section class="hero" aria-labelledby="hero-title">
+  <!-- Brand pattern BG -->
+  <svg class="hero__bg-pattern" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+    <g opacity="0.6">
+      <circle cx="50" cy="50" r="45" fill="#7BCAD1"/>
+      <path d="M50 10C50 10 64 24 64 50C64 70 56 82 50 90L50 10Z" fill="#F5907C"/>
+      <path d="M36 15C36 15 40 30 40 46C40 58 37 65 36 70" stroke="#152E3A" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(110,10)" opacity="0.4">
+      <circle cx="40" cy="40" r="36" fill="#F5907C"/>
+      <path d="M40 8C40 8 52 20 52 40C52 56 46 66 40 72L40 8Z" fill="#7BCAD1"/>
+    </g>
+    <g transform="translate(10,110)" opacity="0.3">
+      <circle cx="40" cy="40" r="36" fill="#F5907C"/>
+      <path d="M40 8C40 8 52 20 52 40C52 56 46 66 40 72L40 8Z" fill="#7BCAD1"/>
+    </g>
+  </svg>
+  <div class="hero__glow" aria-hidden="true"></div>
+  <!-- Brand logo as subtle hero watermark -->
+  <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iTGF5ZXJfMiIgZGF0YS1uYW1lPSJMYXllciAyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA3ODYuMDkgMTQyLjA5Ij4KICA8ZGVmcz4KICAgIDxzdHlsZT4KICAgICAgLmNscy0xIHsKICAgICAgICBmaWxsOiAjZjU5MDdjOwogICAgICB9CgogICAgICAuY2xzLTEsIC5jbHMtMiwgLmNscy0zIHsKICAgICAgICBzdHJva2Utd2lkdGg6IDBweDsKICAgICAgfQoKICAgICAgLmNscy0yIHsKICAgICAgICBmaWxsOiAjN2JjYWQxOwogICAgICB9CgogICAgICAuY2xzLTMgewogICAgICAgIGZpbGw6ICNmZmY7CiAgICAgIH0KICAgIDwvc3R5bGU+CiAgPC9kZWZzPgogIDxnIGlkPSJf0KHQu9C+0LlfMSIgZGF0YS1uYW1lPSLQodC70L7QuSAxIj4KICAgIDxnPgogICAgICA8cGF0aCBjbGFzcz0iY2xzLTMiIGQ9Ik0xOTAuNDYsNTQuNDNoMjAuMjdsLTQuODItMTQuOTRoLTE1LjQ1di0yMi4wMWgtMTcuODN2NzkuOTdjMCw0Ljg0LDEuMzEsOC41NSwzLjkxLDExLjE3LDIuNjIsMi42LDYuMzMsMy45MSwxMS4xNywzLjkxaDIzLjAydi0xNS4wN2gtMjAuMjd2LTQzLjAyWiIvPgogICAgICA8cGF0aCBjbGFzcz0iY2xzLTMiIGQ9Ik0zMDIuNzUsMzkuNWwtMTMuNDcsNDguODQtMTQuMi00OC44NGgtMTYuMzhsLTE0LjMzLDQ4Ljg0LTEzLjQ3LTQ4Ljg0aC0xNy44M2wyMy4zMyw3My4wM2gxNS43OGwxNC42NC00OS4xMSwxNC42Myw0OS4xMWgxNS44bDIzLjMzLTczLjAzaC0xNy44M1oiLz4KICAgICAgPHBhdGggY2xhc3M9ImNscy0zIiBkPSJNMzI4LjM5LDM5LjV2NzMuMDNoMTcuODNWMzkuNWgtMTcuODNaTTMyNy42NiwxMC45N3YxNy42OWgxOS4xNFYxMC45N2gtMTkuMTRaIi8+CiAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMyIgZD0iTTQxMy4xNSwzOS41djguMjZjLTQuODQtNi4yOC0xMS45OC05LjQxLTIxLjQ0LTkuNDEtMTAuNzIsMC0xOS4xNSwzLjQ2LTI1LjMsMTAuMzYtNi4xMyw2LjktOS4xOSwxNi05LjE5LDI3LjMxczMuMDgsMjAuNDEsOS4yOCwyNy4zMWM2LjE4LDYuOTIsMTQuNjgsMTAuMzYsMjUuNSwxMC4zNiw0LjUzLDAsOC43Mi0uODQsMTIuNi0yLjUzLDMuODUtMS42OSw2LjcxLTMuOTQsOC41NS02Ljc1djIzLjQ3aC00NS43OXYxNC4yMWg0OC41NGM0LjczLDAsOC40MS0xLjM0LDExLjA4LTMuOTksMi42NS0yLjY1LDMuOTgtNi4zNSwzLjk4LTExLjA4VjM5LjVoLTE3LjgxWk00MDguODcsOTIuMjRjLTMuNjEsNC4wNi04LjQxLDYuMDktMTQuNCw2LjA5cy0xMC42My0yLjAzLTE0LjItNi4wOWMtMy41OC00LjA2LTUuMzctOS40Ni01LjM3LTE2LjIzczEuNzktMTIuMTcsNS4zNy0xNi4yM2MzLjU2LTQuMDYsOC4yOS02LjA5LDE0LjItNi4wOXMxMC43OSwyLjAzLDE0LjQsNi4wOWMzLjYzLDQuMDYsNS40NCw5LjQ2LDUuNDQsMTYuMjNzLTEuODEsMTIuMTctNS40NCwxNi4yM1oiLz4KICAgICAgPHBhdGggY2xhc3M9ImNscy0zIiBkPSJNNDk3LjExLDc5LjcxYy0xLjUtMy4wNS0zLjQyLTUuMy01LjgtNi43NS0yLjM2LTEuNDUtNC45OS0yLjU1LTcuOS0zLjMyLTIuODktLjc3LTUuNzYtMS4zMS04LjYyLTEuNi0yLjg0LS4yOS01LjQ1LS42Ny03LjgxLTEuMTUtMi4zNy0uNDgtNC4zLTEuMzEtNS44LTIuNDYtMS41LTEuMTctMi4yNS0yLjgtMi4yNS00Ljk0LDAtMi40MS45NS00LjMyLDIuODQtNS43MSwxLjg4LTEuNDEsNC40MS0yLjEsNy42MS0yLjFzNS45LjkxLDguNDcsMi43NWMyLjU2LDEuODIsNC4wNCw0LjM0LDQuNDIsNy41MmgxNi4zOGMtLjQtNy4xNC0zLjI5LTEyLjg3LTguNzEtMTcuMTYtNS40LTQuMy0xMi40MS02LjQ1LTIxLjAxLTYuNDUtNy41MiwwLTEzLjc1LDIuMDMtMTguNjksNi4wOS00LjkyLDQuMDQtNy4zOCw5LjI2LTcuMzgsMTUuNjQsMCw1LjcsMS4zOCwxMC4xOSw0LjEzLDEzLjQ3LDIuNzUsMy4yOSw2LjA3LDUuNDQsMTAsNi40NSwzLjkxLDEuMDIsNy44LDEuNzksMTEuNjcsMi4zMSwzLjg1LjUzLDcuMTYsMS41MSw5LjkxLDIuOTEsMi43NSwxLjM5LDQuMTMsMy41NCw0LjEzLDYuNDQsMCwyLjI0LTEuMDcsNC4xLTMuMTgsNS41OS0yLjEyLDEuNS00Ljg3LDIuMjQtOC4yNiwyLjI0LTMuOTYsMC03LjIzLTEuMDItOS43Ny0zLjA1LTIuNTYtMi4wMy00LjA0LTQuNzgtNC40Mi04LjI2aC0xNi4yM2MuMzgsNy44MywzLjM0LDE0LjA0LDguODQsMTguNjIsNS41MSw0LjU5LDEyLjcsNi44OCwyMS41OCw2Ljg4czE1LjMyLTIuMDYsMjAuNDMtNi4yM2M1LjEzLTQuMTUsNy42OS05LjY1LDcuNjktMTYuNTIsMC00LjQ0LS43Ni04LjE3LTIuMjUtMTEuMjJaIi8+CiAgICAgIDxwb2x5Z29uIGNsYXNzPSJjbHMtMyIgcG9pbnRzPSI1OTAuOTMgNjAuMzcgNTc3LjE4IDgzLjE1IDU2Ni43IDcxLjM3IDU3My41MyA2MC4yMiA1OTAuOTMgNjAuMzciLz4KICAgICAgPHBhdGggY2xhc3M9ImNscy0zIiBkPSJNNTcwLjY0LDM1LjE2YzAsNi43Ni0xLjc2LDEyLjE3LTUuMjgsMTYuMjMtMi40NiwyLjg0LTUuNjEsNS40NS05LjQ2LDcuODVsLTEwLjQxLTExLjdjMi4zNi0xLjM5LDQuMjgtMi43OSw1LjgyLTQuMiwyLjU2LTIuMzYsMy44NC01LjI4LDMuODQtOC43NiwwLTMuMjktMS4wNy01Ljk0LTMuMTgtNy45Ny0yLjEzLTIuMDMtNC44OS0zLjA1LTguMjYtMy4wNXMtNi4xMSwxLjA3LTguMTksMy4xOGMtMS42MiwxLjY3LTIuNjIsMy43My0yLjk2LDYuMjNsLTExLjI1LTEyLjY1Yy44My0xLjE0LDEuNzctMi4yLDIuODQtMy4yMiw1LjAyLTQuNzcsMTEuNTUtNy4xNiwxOS41Ny03LjE2czE0LjUxLDIuMzQsMTkuNDgsNy4wMmM0Ljk3LDQuNjgsNy40NywxMC43Niw3LjQ3LDE4LjE5WiIvPgogICAgICA8cGF0aCBjbGFzcz0iY2xzLTMiIGQ9Ik01ODEuNTIsOTcuMDJsLTYzLjI0LTcxLjE0Yy0xLjE0LDIuOTgtMS42OSw2LjIzLTEuNjksOS44NCwwLDYuMzgsMi45OSwxMy41Myw4Ljk4LDIxLjQ2LTUuNywyLjk5LTEwLjE1LDYuNTQtMTMuMzksMTAuNjMtMy4yNCw0LjExLTQuODUsOS40LTQuODUsMTUuODcsMCw5LjE5LDIuOTgsMTYuNDcsOC45OCwyMS44OSw1Ljk5LDUuNCwxMy43MSw4LjEsMjMuMTgsOC4xLDEwLjUzLDAsMTkuMDctMy44LDI1LjY0LTExLjQ0bDQuNDksNS4wOGMzLjE4LDMuNDgsNy41NCw1LjIxLDEzLjA0LDUuMjFoMTIuNnYtMTUuNWgtMTMuNzVaTTUzOS40OSw5OC4wNGMtNC41NCwwLTguMTktMS4yNi0xMC45NC0zLjc3LTIuNzUtMi41MS00LjEzLTUuOTQtNC4xMy0xMC4yOSwwLTUuNywzLjgyLTEwLjU3LDExLjQ0LTE0LjYzbDE4Ljk4LDIxLjNjLTMuNTYsNC45Mi04LjY5LDcuMzgtMTUuMzUsNy4zOFoiLz4KICAgICAgPHBhdGggY2xhc3M9ImNscy0zIiBkPSJNNjAzLjEsMzkuNXY3My4wM2gxNy44M1YzOS41aC0xNy44M1pNNjAyLjM3LDEwLjk3djE3LjY5aDE5LjEyVjEwLjk3aC0xOS4xMloiLz4KICAgICAgPHBhdGggY2xhc3M9ImNscy0zIiBkPSJNNjk0LjM1LDQ2LjM4Yy00Ljk3LTUuMzUtMTEuNTMtOC4wNC0xOS42My04LjA0LTUuMjEsMC05LjgzLDEuMDgtMTMuODQsMy4yNS00LjAxLDIuMTktNi45OSw1LjI1LTguOTEsOS4yMXYtMTEuMzFoLTE3LjgzdjczLjAzaDE3Ljgzdi0zOS44NGMwLTUuNDIsMS41Ny05Ljg2LDQuNzItMTMuMzQsMy4xMy0zLjQ4LDcuMTYtNS4yMSwxMi4xLTUuMjEsNC41MywwLDguMjMsMS41NywxMS4wOCw0LjcsMi44NCwzLjE1LDQuMjcsNy4yMyw0LjI3LDEyLjI1djQxLjQ0aDE3LjY3di00NS4yMWMwLTguNi0yLjQ4LTE1LjU3LTcuNDUtMjAuOTRaIi8+CiAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMyIgZD0iTTc1My45MSw2OC4wNWwyOS43Mi0yOC41NWgtMjIuNjFsLTI3LjgzLDI2LjUyVjEwLjk3aC0xNy45N3YxMDEuNTZoMTcuOTd2LTI0LjM1bDguNTUtOC4yNCwyMi45LDMyLjU5aDIxLjQ0bC0zMi4xOC00NC40OFoiLz4KICAgICAgPGc+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNNjcuMTIsOC44N3YyOC41NmwtMjAuMzktMjAuMzljNi42NC0zLjA5LDEzLjU0LTUuODMsMjAuMzktOC4xN1oiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0zNy45NSw2Ni40MWwtOS4zNSw5LjM2LDM4LjUyLDM4LjUydjE0QzM0Ljc5LDEyMy45MywwLDk1LjMyLDAsNjMuNjljMC0xNS4xLDE0LjgyLTI5LjIyLDM0LjM3LTQwLjMxbDMyLjc1LDMyLjc1djM5LjQ0bC0yOS4xNy0yOS4xN1oiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0xMzUuNTMsMTEuODJsLTU1LjE4LDU1LjE4VjQuODVjMTEuNjYtMy4xMiwyMi41Mi00Ljg1LDMwLjg3LTQuODUsMTIuMTEsMCwxOS42Myw0LjQ5LDI0LjMxLDExLjgyWiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTE0My4wOCw3MC41NmMwLDMyLjczLTMwLjE2LDU2LjAxLTYyLjcyLDU4LjE1di00M2w2MC40LTYwLjRjMi44NywxMi45NCwyLjMyLDI5LjI5LDIuMzIsNDUuMjVaIi8+CiAgICAgIDwvZz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPg==" alt="" class="hero__logo-wm nav__logo-dark" aria-hidden="true"/>
+  <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iTGF5ZXJfMiIgZGF0YS1uYW1lPSJMYXllciAyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA3ODYuMDkgMTQyLjA5Ij4KICA8ZGVmcz4KICAgIDxzdHlsZT4KICAgICAgLmNscy0xIHsKICAgICAgICBmaWxsOiAjZjU5MDdjOwogICAgICB9CgogICAgICAuY2xzLTEsIC5jbHMtMiwgLmNscy0zIHsKICAgICAgICBzdHJva2Utd2lkdGg6IDBweDsKICAgICAgfQoKICAgICAgLmNscy0yIHsKICAgICAgICBmaWxsOiAjMTUyZTNhOwogICAgICB9CgogICAgICAuY2xzLTMgewogICAgICAgIGZpbGw6ICM3YmNhZDE7CiAgICAgIH0KICAgIDwvc3R5bGU+CiAgPC9kZWZzPgogIDxnIGlkPSJf0KHQu9C+0LlfMSIgZGF0YS1uYW1lPSLQodC70L7QuSAxIj4KICAgIDxnPgogICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0xOTAuNDYsNTQuNDNoMjAuMjdsLTQuODItMTQuOTRoLTE1LjQ1di0yMi4wMWgtMTcuODN2NzkuOTdjMCw0Ljg0LDEuMzEsOC41NSwzLjkxLDExLjE3LDIuNjIsMi42LDYuMzMsMy45MSwxMS4xNywzLjkxaDIzLjAydi0xNS4wN2gtMjAuMjd2LTQzLjAyWiIvPgogICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0zMDIuNzUsMzkuNWwtMTMuNDcsNDguODQtMTQuMi00OC44NGgtMTYuMzhsLTE0LjMzLDQ4Ljg0LTEzLjQ3LTQ4Ljg0aC0xNy44M2wyMy4zMyw3My4wM2gxNS43OGwxNC42NC00OS4xMSwxNC42Myw0OS4xMWgxNS44bDIzLjMzLTczLjAzaC0xNy44M1oiLz4KICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMzI4LjM5LDM5LjV2NzMuMDNoMTcuODNWMzkuNWgtMTcuODNaTTMyNy42NiwxMC45N3YxNy42OWgxOS4xNFYxMC45N2gtMTkuMTRaIi8+CiAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTQxMy4xNSwzOS41djguMjZjLTQuODQtNi4yOC0xMS45OC05LjQxLTIxLjQ0LTkuNDEtMTAuNzIsMC0xOS4xNSwzLjQ2LTI1LjMsMTAuMzYtNi4xMyw2LjktOS4xOSwxNi05LjE5LDI3LjMxczMuMDgsMjAuNDEsOS4yOCwyNy4zMWM2LjE4LDYuOTIsMTQuNjgsMTAuMzYsMjUuNSwxMC4zNiw0LjUzLDAsOC43Mi0uODQsMTIuNi0yLjUzLDMuODUtMS42OSw2LjcxLTMuOTQsOC41NS02Ljc1djIzLjQ3aC00NS43OXYxNC4yMWg0OC41NGM0LjczLDAsOC40MS0xLjM0LDExLjA4LTMuOTksMi42NS0yLjY1LDMuOTgtNi4zNSwzLjk4LTExLjA4VjM5LjVoLTE3LjgxWk00MDguODcsOTIuMjRjLTMuNjEsNC4wNi04LjQxLDYuMDktMTQuNCw2LjA5cy0xMC42My0yLjAzLTE0LjItNi4wOWMtMy41OC00LjA2LTUuMzctOS40Ni01LjM3LTE2LjIzczEuNzktMTIuMTcsNS4zNy0xNi4yM2MzLjU2LTQuMDYsOC4yOS02LjA5LDE0LjItNi4wOXMxMC43OSwyLjAzLDE0LjQsNi4wOWMzLjYzLDQuMDYsNS40NCw5LjQ2LDUuNDQsMTYuMjNzLTEuODEsMTIuMTctNS40NCwxNi4yM1oiLz4KICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNNDk3LjExLDc5LjcxYy0xLjUtMy4wNS0zLjQyLTUuMy01LjgtNi43NS0yLjM2LTEuNDUtNC45OS0yLjU1LTcuOS0zLjMyLTIuODktLjc3LTUuNzYtMS4zMS04LjYyLTEuNi0yLjg0LS4yOS01LjQ1LS42Ny03LjgxLTEuMTUtMi4zNy0uNDgtNC4zLTEuMzEtNS44LTIuNDYtMS41LTEuMTctMi4yNS0yLjgtMi4yNS00Ljk0LDAtMi40MS45NS00LjMyLDIuODQtNS43MSwxLjg4LTEuNDEsNC40MS0yLjEsNy42MS0yLjFzNS45LjkxLDguNDcsMi43NWMyLjU2LDEuODIsNC4wNCw0LjM0LDQuNDIsNy41MmgxNi4zOGMtLjQtNy4xNC0zLjI5LTEyLjg3LTguNzEtMTcuMTYtNS40LTQuMy0xMi40MS02LjQ1LTIxLjAxLTYuNDUtNy41MiwwLTEzLjc1LDIuMDMtMTguNjksNi4wOS00LjkyLDQuMDQtNy4zOCw5LjI2LTcuMzgsMTUuNjQsMCw1LjcsMS4zOCwxMC4xOSw0LjEzLDEzLjQ3LDIuNzUsMy4yOSw2LjA3LDUuNDQsMTAsNi40NSwzLjkxLDEuMDIsNy44LDEuNzksMTEuNjcsMi4zMSwzLjg1LjUzLDcuMTYsMS41MSw5LjkxLDIuOTEsMi43NSwxLjM5LDQuMTMsMy41NCw0LjEzLDYuNDQsMCwyLjI0LTEuMDcsNC4xLTMuMTgsNS41OS0yLjEyLDEuNS00Ljg3LDIuMjQtOC4yNiwyLjI0LTMuOTYsMC03LjIzLTEuMDItOS43Ny0zLjA1LTIuNTYtMi4wMy00LjA0LTQuNzgtNC40Mi04LjI2aC0xNi4yM2MuMzgsNy44MywzLjM0LDE0LjA0LDguODQsMTguNjIsNS41MSw0LjU5LDEyLjcsNi44OCwyMS41OCw2Ljg4czE1LjMyLTIuMDYsMjAuNDMtNi4yM2M1LjEzLTQuMTUsNy42OS05LjY1LDcuNjktMTYuNTIsMC00LjQ0LS43Ni04LjE3LTIuMjUtMTEuMjJaIi8+CiAgICAgIDxwb2x5Z29uIGNsYXNzPSJjbHMtMiIgcG9pbnRzPSI1OTAuOTMgNjAuMzcgNTc3LjE4IDgzLjE1IDU2Ni43IDcxLjM3IDU3My41MyA2MC4yMiA1OTAuOTMgNjAuMzciLz4KICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNNTcwLjY0LDM1LjE2YzAsNi43Ni0xLjc2LDEyLjE3LTUuMjgsMTYuMjMtMi40NiwyLjg0LTUuNjEsNS40NS05LjQ2LDcuODVsLTEwLjQxLTExLjdjMi4zNi0xLjM5LDQuMjgtMi43OSw1LjgyLTQuMiwyLjU2LTIuMzYsMy44NC01LjI4LDMuODQtOC43NiwwLTMuMjktMS4wNy01Ljk0LTMuMTgtNy45Ny0yLjEzLTIuMDMtNC44OS0zLjA1LTguMjYtMy4wNXMtNi4xMSwxLjA3LTguMTksMy4xOGMtMS42MiwxLjY3LTIuNjIsMy43My0yLjk2LDYuMjNsLTExLjI1LTEyLjY1Yy44My0xLjE0LDEuNzctMi4yLDIuODQtMy4yMiw1LjAyLTQuNzcsMTEuNTUtNy4xNiwxOS41Ny03LjE2czE0LjUxLDIuMzQsMTkuNDgsNy4wMmM0Ljk3LDQuNjgsNy40NywxMC43Niw3LjQ3LDE4LjE5WiIvPgogICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik01ODEuNTIsOTcuMDJsLTYzLjI0LTcxLjE0Yy0xLjE0LDIuOTgtMS42OSw2LjIzLTEuNjksOS44NCwwLDYuMzgsMi45OSwxMy41Myw4Ljk4LDIxLjQ2LTUuNywyLjk5LTEwLjE1LDYuNTQtMTMuMzksMTAuNjMtMy4yNCw0LjExLTQuODUsOS40LTQuODUsMTUuODcsMCw5LjE5LDIuOTgsMTYuNDcsOC45OCwyMS44OSw1Ljk5LDUuNCwxMy43MSw4LjEsMjMuMTgsOC4xLDEwLjUzLDAsMTkuMDctMy44LDI1LjY0LTExLjQ0bDQuNDksNS4wOGMzLjE4LDMuNDgsNy41NCw1LjIxLDEzLjA0LDUuMjFoMTIuNnYtMTUuNWgtMTMuNzVaTTUzOS40OSw5OC4wNGMtNC41NCwwLTguMTktMS4yNi0xMC45NC0zLjc3cy00LjEzLTUuOTQtNC4xMy0xMC4yOWMwLTUuNywzLjgyLTEwLjU3LDExLjQ0LTE0LjYzbDE4Ljk4LDIxLjNjLTMuNTYsNC45Mi04LjY5LDcuMzgtMTUuMzUsNy4zOFoiLz4KICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNNjAzLjEsMzkuNXY3My4wM2gxNy44M1YzOS41aC0xNy44M1pNNjAyLjM3LDEwLjk3djE3LjY5aDE5LjEyVjEwLjk3aC0xOS4xMloiLz4KICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNNjk0LjM1LDQ2LjM4Yy00Ljk3LTUuMzUtMTEuNTMtOC4wNC0xOS42My04LjA0LTUuMjEsMC05LjgzLDEuMDgtMTMuODQsMy4yNS00LjAxLDIuMTktNi45OSw1LjI1LTguOTEsOS4yMXYtMTEuMzFoLTE3LjgzdjczLjAzaDE3Ljgzdi0zOS44NGMwLTUuNDIsMS41Ny05Ljg2LDQuNzItMTMuMzQsMy4xMy0zLjQ4LDcuMTYtNS4yMSwxMi4xLTUuMjEsNC41MywwLDguMjMsMS41NywxMS4wOCw0LjcsMi44NCwzLjE1LDQuMjcsNy4yMyw0LjI3LDEyLjI1djQxLjQ0aDE3LjY3di00NS4yMWMwLTguNi0yLjQ4LTE1LjU3LTcuNDUtMjAuOTRaIi8+CiAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTc1My45MSw2OC4wNWwyOS43Mi0yOC41NWgtMjIuNjFsLTI3LjgzLDI2LjUyVjEwLjk3aC0xNy45N3YxMDEuNTZoMTcuOTd2LTI0LjM1bDguNTUtOC4yNCwyMi45LDMyLjU5aDIxLjQ0bC0zMi4xOC00NC40OFoiLz4KICAgICAgPGc+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0zIiBkPSJNNjcuMTIsOC44N3YyOC41NmwtMjAuMzktMjAuMzljNi42NC0zLjA5LDEzLjU0LTUuODMsMjAuMzktOC4xN1oiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0zNy45NSw2Ni40MWwtOS4zNSw5LjM2LDM4LjUyLDM4LjUydjE0QzM0Ljc5LDEyMy45MywwLDk1LjMyLDAsNjMuNjljMC0xNS4xLDE0LjgyLTI5LjIyLDM0LjM3LTQwLjMxbDMyLjc1LDMyLjc1djM5LjQ0bC0yOS4xNy0yOS4xN1oiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0xMzUuNTMsMTEuODJsLTU1LjE4LDU1LjE4VjQuODVjMTEuNjYtMy4xMiwyMi41Mi00Ljg1LDMwLjg3LTQuODUsMTIuMTEsMCwxOS42Myw0LjQ5LDI0LjMxLDExLjgyWiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMyIgZD0iTTE0My4wOCw3MC41NmMwLDMyLjczLTMwLjE2LDU2LjAxLTYyLjcyLDU4LjE1di00M2w2MC40LTYwLjRjMi44NywxMi45NCwyLjMyLDI5LjI5LDIuMzIsNDUuMjVaIi8+CiAgICAgIDwvZz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPg==" alt="" class="hero__logo-wm nav__logo-light" aria-hidden="true"/>
+
+  <div style="max-width:780px">
+    <div class="hero__kicker">
+      <span class="hero__dot" aria-hidden="true"></span>
+      B2B MarTech Agency
+    </div>
+    <h1 class="hero__h1" id="hero-title">
+      Crafting<br/>
+      <span class="c-coral">transformative</span><br/>
+      <span class="outline">MarTech</span> experiences.
+    </h1>
+    <p class="hero__sub">
+      We help B2B businesses grow sustainably — through bespoke account-based marketing, intelligent automation, and content strategies that convert.
+    </p>
+    <div class="hero__actions">
+      <a href="#services" class="btn-coral">
+        Explore Services
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#about" class="btn-outline">Our Story</a>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker__track">
+    <span class="ticker__item">Account-Based Marketing <span class="ticker__dot">✦</span></span>
+    <span class="ticker__item">Content Strategy <span class="ticker__dot">✦</span></span>
+    <span class="ticker__item">MarTech Automation <span class="ticker__dot">✦</span></span>
+    <span class="ticker__item">SEO & Digital Strategy <span class="ticker__dot">✦</span></span>
+    <span class="ticker__item">CMO as a Service <span class="ticker__dot">✦</span></span>
+    <span class="ticker__item">Agile Marketing <span class="ticker__dot">✦</span></span>
+    <span class="ticker__item">Pipeline Growth <span class="ticker__dot">✦</span></span>
+    <span class="ticker__item">Account-Based Marketing <span class="ticker__dot">✦</span></span>
+    <span class="ticker__item">Content Strategy <span class="ticker__dot">✦</span></span>
+    <span class="ticker__item">MarTech Automation <span class="ticker__dot">✦</span></span>
+    <span class="ticker__item">SEO & Digital Strategy <span class="ticker__dot">✦</span></span>
+    <span class="ticker__item">CMO as a Service <span class="ticker__dot">✦</span></span>
+    <span class="ticker__item">Agile Marketing <span class="ticker__dot">✦</span></span>
+    <span class="ticker__item">Pipeline Growth <span class="ticker__dot">✦</span></span>
+  </div>
+</div>
+
+<!-- ── ABOUT ──────────────────────────────────────── -->
+<section class="section" id="about" aria-labelledby="about-h2">
+  <div class="container">
+    <div class="about__grid">
+      <div class="reveal">
+        <div class="about__big" aria-hidden="true">8+</div>
+        <div class="eyebrow">About Us</div>
+        <h2 class="section__title" id="about-h2">Growing your<br/>business, <span class="c-coral">organically.</span></h2>
+        <p class="about__desc">We are a team of B2B marketing specialists who believe in building growth systems that compound over time. Our bespoke MarTech approach means every strategy is crafted around your unique business — never a template.</p>
+        <div class="about__chips">
+          <span class="chip">Bespoke ABM</span>
+          <span class="chip chip--teal">Agile Execution</span>
+          <span class="chip">Pipeline-First</span>
+          <span class="chip chip--teal">Content-Led Growth</span>
+          <span class="chip">Revenue-Focused</span>
+          <span class="chip chip--teal">B2B Specialists</span>
+        </div>
+      </div>
+      <div class="about__stats reveal">
+        <div class="about__stat">
+          <div class="about__stat-num"><span class="count-up" data-target="50">0</span>+</div>
+          <div class="about__stat-label">B2B clients across SaaS, Fintech &amp; Enterprise</div>
+        </div>
+        <div class="about__stat">
+          <div class="about__stat-num"><span class="count-up" data-target="3">0</span>×</div>
+          <div class="about__stat-label">Average pipeline growth within 6 months</div>
+        </div>
+        <div class="about__stat">
+          <div class="about__stat-num"><span class="count-up" data-target="94">0</span>%</div>
+          <div class="about__stat-label">Client retention — because we deliver results</div>
+        </div>
+        <div class="about__stat">
+          <div class="about__stat-num"><span class="count-up" data-target="8">0</span>+</div>
+          <div class="about__stat-label">Years of deep B2B marketing expertise</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- ── SERVICES ───────────────────────────────────── -->
+<section class="section section--alt" id="services" aria-labelledby="svc-h2">
+  <div class="container">
+    <div class="svc-header">
+      <div>
+        <div class="eyebrow reveal">What We Do</div>
+        <h2 class="section__title reveal" id="svc-h2">Services built for<br/><span class="c-dim">B2B growth.</span></h2>
+      </div>
+      <p style="font-size:var(--text-sm);font-weight:300;color:var(--text-muted);max-width:36ch;line-height:1.65" class="reveal">Every service integrates seamlessly — so your marketing engine works as one compounding system.</p>
+    </div>
+    <div class="svc-grid reveal">
+      <div class="svc-card">
+        <div class="svc-card__num">01</div>
+        <h3 class="svc-card__title">Account-Based Marketing</h3>
+        <p class="svc-card__desc">Precision-targeted campaigns for the accounts that matter most. We align sales and marketing around shared revenue goals.</p>
+        <div class="svc-card__arrow" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-card__num">02</div>
+        <h3 class="svc-card__title">Content Marketing</h3>
+        <p class="svc-card__desc">Strategic content that builds authority, earns organic traffic, and nurtures prospects across every stage of the B2B buying journey.</p>
+        <div class="svc-card__arrow" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-card__num">03</div>
+        <h3 class="svc-card__title">Marketing Automation</h3>
+        <p class="svc-card__desc">Systems that work 24/7 — lead scoring, nurture sequences, CRM integrations, and dashboards that surface what's working.</p>
+        <div class="svc-card__arrow" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+      <div class="svc-card svc-card--wide">
+        <div class="svc-card__num">04</div>
+        <h3 class="svc-card__title">Digital Strategy & SEO</h3>
+        <p class="svc-card__desc">From keyword strategy to technical SEO and digital audits — we make sure your brand is discoverable at every point in the buyer's research process. We align organic search with your broader demand gen programme so every channel compounds.</p>
+        <div class="svc-card__arrow" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-card__num">05</div>
+        <h3 class="svc-card__title">CMO as a Service</h3>
+        <p class="svc-card__desc">Senior marketing leadership for B2B companies that need strategic direction without the full-time overhead. We embed as your fractional CMO.</p>
+        <div class="svc-card__arrow" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BIG TYPE TICKER -->
+<div class="svc-ticker" aria-hidden="true">
+  <div class="svc-ticker__track">
+    <span class="svc-ticker__item">Account-Based Marketing</span>
+    <span class="svc-ticker__item svc-ticker__sep"> ✦ </span>
+    <span class="svc-ticker__item">Content Marketing</span>
+    <span class="svc-ticker__item svc-ticker__sep"> ✦ </span>
+    <span class="svc-ticker__item">Marketing Automation</span>
+    <span class="svc-ticker__item svc-ticker__sep"> ✦ </span>
+    <span class="svc-ticker__item">CMO as a Service</span>
+    <span class="svc-ticker__item svc-ticker__sep"> ✦ </span>
+    <span class="svc-ticker__item">Digital Strategy</span>
+    <span class="svc-ticker__item svc-ticker__sep"> ✦ </span>
+    <span class="svc-ticker__item">Account-Based Marketing</span>
+    <span class="svc-ticker__item svc-ticker__sep"> ✦ </span>
+    <span class="svc-ticker__item">Content Marketing</span>
+    <span class="svc-ticker__item svc-ticker__sep"> ✦ </span>
+    <span class="svc-ticker__item">Marketing Automation</span>
+    <span class="svc-ticker__item svc-ticker__sep"> ✦ </span>
+    <span class="svc-ticker__item">CMO as a Service</span>
+    <span class="svc-ticker__item svc-ticker__sep"> ✦ </span>
+    <span class="svc-ticker__item">Digital Strategy</span>
+    <span class="svc-ticker__item svc-ticker__sep"> ✦ </span>
+  </div>
+</div>
+
+<!-- ── APPROACH ───────────────────────────────────── -->
+<section class="section" id="approach" aria-labelledby="app-h2">
+  <div class="container">
+    <div class="eyebrow--teal eyebrow reveal">How We Work</div>
+    <h2 class="section__title reveal" id="app-h2">A process built<br/>for <span class="c-teal">results.</span></h2>
+    <div class="approach__rows">
+      <div class="approach__row reveal">
+        <div class="approach__row-num">01</div>
+        <div>
+          <div class="approach__row-title">Discover &amp; Audit</div>
+          <p class="approach__row-desc">Deep-dive into your business, market, ICP, and current marketing stack. No assumptions — only data and honest conversation.</p>
+        </div>
+        <div class="approach__row-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
+      </div>
+      <div class="approach__row reveal">
+        <div class="approach__row-num">02</div>
+        <div>
+          <div class="approach__row-title">Strategise</div>
+          <p class="approach__row-desc">Design a bespoke MarTech roadmap aligned to your revenue goals — channel mix, messaging, campaign cadence, and KPIs you'll actually care about.</p>
+        </div>
+        <div class="approach__row-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+      </div>
+      <div class="approach__row reveal">
+        <div class="approach__row-num">03</div>
+        <div>
+          <div class="approach__row-title">Execute &amp; Iterate</div>
+          <p class="approach__row-desc">Agile sprint model — test, learn, optimise in real time. We move fast and compound wins, cutting what doesn't perform immediately.</p>
+        </div>
+        <div class="approach__row-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+      </div>
+      <div class="approach__row reveal">
+        <div class="approach__row-num">04</div>
+        <div>
+          <div class="approach__row-title">Report &amp; Scale</div>
+          <p class="approach__row-desc">Transparent reporting on metrics that drive revenue. We scale what works, month after month, compounding your growth systematically.</p>
+        </div>
+        <div class="approach__row-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M18.5 8l-5 5-4-4-4.5 4.5"/></svg></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRY PILLS -->
+<div class="industry" aria-hidden="true">
+  <div class="industry__track">
+    <span class="industry__pill">SaaS</span>
+    <span class="industry__pill">B2B Fintech</span>
+    <span class="industry__pill">Enterprise Tech</span>
+    <span class="industry__pill">Professional Services</span>
+    <span class="industry__pill">B2B E-commerce</span>
+    <span class="industry__pill">Logistics Tech</span>
+    <span class="industry__pill">HR Tech</span>
+    <span class="industry__pill">Cybersecurity</span>
+    <span class="industry__pill">Data & Analytics</span>
+    <span class="industry__pill">MarTech</span>
+    <span class="industry__pill">SaaS</span>
+    <span class="industry__pill">B2B Fintech</span>
+    <span class="industry__pill">Enterprise Tech</span>
+    <span class="industry__pill">Professional Services</span>
+    <span class="industry__pill">B2B E-commerce</span>
+    <span class="industry__pill">Logistics Tech</span>
+    <span class="industry__pill">HR Tech</span>
+    <span class="industry__pill">Cybersecurity</span>
+    <span class="industry__pill">Data & Analytics</span>
+    <span class="industry__pill">MarTech</span>
+  </div>
+</div>
+
+<!-- ── WHY US ──────────────────────────────────────── -->
+<section class="section section--alt" id="why" aria-labelledby="why-h2">
+  <div class="container">
+    <div class="eyebrow reveal">Why Choose Us</div>
+    <h2 class="section__title reveal" id="why-h2">Adaptive strategies<br/>for <span class="c-coral">constant growth.</span></h2>
+    <div class="why__grid">
+      <div class="why__card reveal">
+        <div class="why__card-num">01</div>
+        <h3 class="why__card-title">We evolve with your market</h3>
+        <p class="why__card-desc">Our strategies adapt in real time, incorporating live results and industry shifts. If the market changes, so do we — before you even notice.</p>
+      </div>
+      <div class="why__card why__card--coral reveal">
+        <div class="why__card-num">02</div>
+        <h3 class="why__card-title">Simplicity delivers the strongest outcomes</h3>
+        <p class="why__card-desc">No vanity metrics. No bloated retainers. Streamlined actions, deep engagement, and measurable success you can attribute directly to revenue.</p>
+      </div>
+      <div class="why__card reveal">
+        <div class="why__card-num">03</div>
+        <h3 class="why__card-title">Senior expertise, always accessible</h3>
+        <p class="why__card-desc">You work directly with experienced B2B marketers — not account coordinators. Senior strategy and hands-on execution from day one.</p>
+      </div>
+      <div class="why__card reveal">
+        <div class="why__card-num">04</div>
+        <h3 class="why__card-title">B2B MarTech is all we do</h3>
+        <p class="why__card-desc">Long cycles, complex buyers, multi-stakeholder deals — we've built our entire practice around this world. We understand the nuances that generalist agencies miss.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ────────────────────────────────── -->
+<section class="section" id="testimonials" aria-labelledby="testi-h2">
+  <div class="container">
+    <div class="eyebrow--teal eyebrow reveal">Client Stories</div>
+    <h2 class="section__title reveal" id="testi-h2">What our clients <span class="c-teal">say.</span></h2>
+    <div class="testi__wrap reveal">
+      <div class="testi__track" id="testiTrack">
+        <div class="testi-card">
+          <p class="testi-card__quote">twigs&amp;ink transformed our marketing from a cost centre into a genuine pipeline engine. Our SQL volume tripled in under six months.</p>
+          <div class="testi-card__author">
+            <div class="testi-ava">SR</div>
+            <div><div class="testi__name">Sandeep R.</div><div class="testi__role">VP Marketing, SaaS Platform</div></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <p class="testi-card__quote">The ABM programme they built for us was a game-changer. We're landing enterprise accounts we'd been chasing for years.</p>
+          <div class="testi-card__author">
+            <div class="testi-ava testi-ava--teal">PK</div>
+            <div><div class="testi__name">Priya K.</div><div class="testi__role">CEO, B2B Fintech</div></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <p class="testi-card__quote">Finally, a marketing partner that speaks in revenue terms, not impressions. The CMO-as-a-Service has been invaluable at our growth stage.</p>
+          <div class="testi-card__author">
+            <div class="testi-ava">AM</div>
+            <div><div class="testi__name">Arjun M.</div><div class="testi__role">Founder, B2B Logistics Tech</div></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <p class="testi-card__quote">The content strategy they built drove a 4× increase in organic leads within a quarter. Exceptional quality and speed of execution.</p>
+          <div class="testi-card__author">
+            <div class="testi-ava testi-ava--teal">NV</div>
+            <div><div class="testi__name">Neha V.</div><div class="testi__role">CMO, Enterprise HR Tech</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="testi__nav" id="testiNav" role="tablist" aria-label="Testimonial navigation"></div>
+  </div>
+</section>
+
+<!-- ── CTA ────────────────────────────────────────── -->
+<section class="section" id="contact" aria-labelledby="cta-h2">
+  <div class="container">
+    <div class="cta-block reveal">
+      <h2 class="cta-block__title" id="cta-h2">
+        Ready to grow<br/>your <span class="c-coral">pipeline?</span>
+      </h2>
+      <p class="cta-block__sub">Let's have a no-commitment conversation about your growth challenges and how twigs&amp;ink can help you scale — sustainably and organically.</p>
+      <div class="cta-block__btns">
+        <a href="mailto:hello@twigsandink.com" class="btn-coral">
+          Book a Discovery Call
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="mailto:hello@twigsandink.com" class="btn-outline">hello@twigsandink.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ── FOOTER ─────────────────────────────────────── -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__top">
+      <div>
+        <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iTGF5ZXJfMiIgZGF0YS1uYW1lPSJMYXllciAyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA3ODYuMDkgMTQyLjA5Ij4KICA8ZGVmcz4KICAgIDxzdHlsZT4KICAgICAgLmNscy0xIHsKICAgICAgICBmaWxsOiAjZjU5MDdjOwogICAgICB9CgogICAgICAuY2xzLTEsIC5jbHMtMiwgLmNscy0zIHsKICAgICAgICBzdHJva2Utd2lkdGg6IDBweDsKICAgICAgfQoKICAgICAgLmNscy0yIHsKICAgICAgICBmaWxsOiAjN2JjYWQxOwogICAgICB9CgogICAgICAuY2xzLTMgewogICAgICAgIGZpbGw6ICNmZmY7CiAgICAgIH0KICAgIDwvc3R5bGU+CiAgPC9kZWZzPgogIDxnIGlkPSJf0KHQu9C+0LlfMSIgZGF0YS1uYW1lPSLQodC70L7QuSAxIj4KICAgIDxnPgogICAgICA8cGF0aCBjbGFzcz0iY2xzLTMiIGQ9Ik0xOTAuNDYsNTQuNDNoMjAuMjdsLTQuODItMTQuOTRoLTE1LjQ1di0yMi4wMWgtMTcuODN2NzkuOTdjMCw0Ljg0LDEuMzEsOC41NSwzLjkxLDExLjE3LDIuNjIsMi42LDYuMzMsMy45MSwxMS4xNywzLjkxaDIzLjAydi0xNS4wN2gtMjAuMjd2LTQzLjAyWiIvPgogICAgICA8cGF0aCBjbGFzcz0iY2xzLTMiIGQ9Ik0zMDIuNzUsMzkuNWwtMTMuNDcsNDguODQtMTQuMi00OC44NGgtMTYuMzhsLTE0LjMzLDQ4Ljg0LTEzLjQ3LTQ4Ljg0aC0xNy44M2wyMy4zMyw3My4wM2gxNS43OGwxNC42NC00OS4xMSwxNC42Myw0OS4xMWgxNS44bDIzLjMzLTczLjAzaC0xNy44M1oiLz4KICAgICAgPHBhdGggY2xhc3M9ImNscy0zIiBkPSJNMzI4LjM5LDM5LjV2NzMuMDNoMTcuODNWMzkuNWgtMTcuODNaTTMyNy42NiwxMC45N3YxNy42OWgxOS4xNFYxMC45N2gtMTkuMTRaIi8+CiAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMyIgZD0iTTQxMy4xNSwzOS41djguMjZjLTQuODQtNi4yOC0xMS45OC05LjQxLTIxLjQ0LTkuNDEtMTAuNzIsMC0xOS4xNSwzLjQ2LTI1LjMsMTAuMzYtNi4xMyw2LjktOS4xOSwxNi05LjE5LDI3LjMxczMuMDgsMjAuNDEsOS4yOCwyNy4zMWM2LjE4LDYuOTIsMTQuNjgsMTAuMzYsMjUuNSwxMC4zNiw0LjUzLDAsOC43Mi0uODQsMTIuNi0yLjUzLDMuODUtMS42OSw2LjcxLTMuOTQsOC41NS02Ljc1djIzLjQ3aC00NS43OXYxNC4yMWg0OC41NGM0LjczLDAsOC40MS0xLjM0LDExLjA4LTMuOTksMi42NS0yLjY1LDMuOTgtNi4zNSwzLjk4LTExLjA4VjM5LjVoLTE3LjgxWk00MDguODcsOTIuMjRjLTMuNjEsNC4wNi04LjQxLDYuMDktMTQuNCw2LjA5cy0xMC42My0yLjAzLTE0LjItNi4wOWMtMy41OC00LjA2LTUuMzctOS40Ni01LjM3LTE2LjIzczEuNzktMTIuMTcsNS4zNy0xNi4yM2MzLjU2LTQuMDYsOC4yOS02LjA5LDE0LjItNi4wOXMxMC43OSwyLjAzLDE0LjQsNi4wOWMzLjYzLDQuMDYsNS40NCw5LjQ2LDUuNDQsMTYuMjNzLTEuODEsMTIuMTctNS40NCwxNi4yM1oiLz4KICAgICAgPHBhdGggY2xhc3M9ImNscy0zIiBkPSJNNDk3LjExLDc5LjcxYy0xLjUtMy4wNS0zLjQyLTUuMy01LjgtNi43NS0yLjM2LTEuNDUtNC45OS0yLjU1LTcuOS0zLjMyLTIuODktLjc3LTUuNzYtMS4zMS04LjYyLTEuNi0yLjg0LS4yOS01LjQ1LS42Ny03LjgxLTEuMTUtMi4zNy0uNDgtNC4zLTEuMzEtNS44LTIuNDYtMS41LTEuMTctMi4yNS0yLjgtMi4yNS00Ljk0LDAtMi40MS45NS00LjMyLDIuODQtNS43MSwxLjg4LTEuNDEsNC40MS0yLjEsNy42MS0yLjFzNS45LjkxLDguNDcsMi43NWMyLjU2LDEuODIsNC4wNCw0LjM0LDQuNDIsNy41MmgxNi4zOGMtLjQtNy4xNC0zLjI5LTEyLjg3LTguNzEtMTcuMTYtNS40LTQuMy0xMi40MS02LjQ1LTIxLjAxLTYuNDUtNy41MiwwLTEzLjc1LDIuMDMtMTguNjksNi4wOS00LjkyLDQuMDQtNy4zOCw5LjI2LTcuMzgsMTUuNjQsMCw1LjcsMS4zOCwxMC4xOSw0LjEzLDEzLjQ3LDIuNzUsMy4yOSw2LjA3LDUuNDQsMTAsNi40NSwzLjkxLDEuMDIsNy44LDEuNzksMTEuNjcsMi4zMSwzLjg1LjUzLDcuMTYsMS41MSw5LjkxLDIuOTEsMi43NSwxLjM5LDQuMTMsMy41NCw0LjEzLDYuNDQsMCwyLjI0LTEuMDcsNC4xLTMuMTgsNS41OS0yLjEyLDEuNS00Ljg3LDIuMjQtOC4yNiwyLjI0LTMuOTYsMC03LjIzLTEuMDItOS43Ny0zLjA1LTIuNTYtMi4wMy00LjA0LTQuNzgtNC40Mi04LjI2aC0xNi4yM2MuMzgsNy44MywzLjM0LDE0LjA0LDguODQsMTguNjIsNS41MSw0LjU5LDEyLjcsNi44OCwyMS41OCw2Ljg4czE1LjMyLTIuMDYsMjAuNDMtNi4yM2M1LjEzLTQuMTUsNy42OS05LjY1LDcuNjktMTYuNTIsMC00LjQ0LS43Ni04LjE3LTIuMjUtMTEuMjJaIi8+CiAgICAgIDxwb2x5Z29uIGNsYXNzPSJjbHMtMyIgcG9pbnRzPSI1OTAuOTMgNjAuMzcgNTc3LjE4IDgzLjE1IDU2Ni43IDcxLjM3IDU3My41MyA2MC4yMiA1OTAuOTMgNjAuMzciLz4KICAgICAgPHBhdGggY2xhc3M9ImNscy0zIiBkPSJNNTcwLjY0LDM1LjE2YzAsNi43Ni0xLjc2LDEyLjE3LTUuMjgsMTYuMjMtMi40NiwyLjg0LTUuNjEsNS40NS05LjQ2LDcuODVsLTEwLjQxLTExLjdjMi4zNi0xLjM5LDQuMjgtMi43OSw1LjgyLTQuMiwyLjU2LTIuMzYsMy44NC01LjI4LDMuODQtOC43NiwwLTMuMjktMS4wNy01Ljk0LTMuMTgtNy45Ny0yLjEzLTIuMDMtNC44OS0zLjA1LTguMjYtMy4wNXMtNi4xMSwxLjA3LTguMTksMy4xOGMtMS42MiwxLjY3LTIuNjIsMy43My0yLjk2LDYuMjNsLTExLjI1LTEyLjY1Yy44My0xLjE0LDEuNzctMi4yLDIuODQtMy4yMiw1LjAyLTQuNzcsMTEuNTUtNy4xNiwxOS41Ny03LjE2czE0LjUxLDIuMzQsMTkuNDgsNy4wMmM0Ljk3LDQuNjgsNy40NywxMC43Niw3LjQ3LDE4LjE5WiIvPgogICAgICA8cGF0aCBjbGFzcz0iY2xzLTMiIGQ9Ik01ODEuNTIsOTcuMDJsLTYzLjI0LTcxLjE0Yy0xLjE0LDIuOTgtMS42OSw2LjIzLTEuNjksOS44NCwwLDYuMzgsMi45OSwxMy41Myw4Ljk4LDIxLjQ2LTUuNywyLjk5LTEwLjE1LDYuNTQtMTMuMzksMTAuNjMtMy4yNCw0LjExLTQuODUsOS40LTQuODUsMTUuODcsMCw5LjE5LDIuOTgsMTYuNDcsOC45OCwyMS44OSw1Ljk5LDUuNCwxMy43MSw4LjEsMjMuMTgsOC4xLDEwLjUzLDAsMTkuMDctMy44LDI1LjY0LTExLjQ0bDQuNDksNS4wOGMzLjE4LDMuNDgsNy41NCw1LjIxLDEzLjA0LDUuMjFoMTIuNnYtMTUuNWgtMTMuNzVaTTUzOS40OSw5OC4wNGMtNC41NCwwLTguMTktMS4yNi0xMC45NC0zLjc3LTIuNzUtMi41MS00LjEzLTUuOTQtNC4xMy0xMC4yOSwwLTUuNywzLjgyLTEwLjU3LDExLjQ0LTE0LjYzbDE4Ljk4LDIxLjNjLTMuNTYsNC45Mi04LjY5LDcuMzgtMTUuMzUsNy4zOFoiLz4KICAgICAgPHBhdGggY2xhc3M9ImNscy0zIiBkPSJNNjAzLjEsMzkuNXY3My4wM2gxNy44M1YzOS41aC0xNy44M1pNNjAyLjM3LDEwLjk3djE3LjY5aDE5LjEyVjEwLjk3aC0xOS4xMloiLz4KICAgICAgPHBhdGggY2xhc3M9ImNscy0zIiBkPSJNNjk0LjM1LDQ2LjM4Yy00Ljk3LTUuMzUtMTEuNTMtOC4wNC0xOS42My04LjA0LTUuMjEsMC05LjgzLDEuMDgtMTMuODQsMy4yNS00LjAxLDIuMTktNi45OSw1LjI1LTguOTEsOS4yMXYtMTEuMzFoLTE3LjgzdjczLjAzaDE3Ljgzdi0zOS44NGMwLTUuNDIsMS41Ny05Ljg2LDQuNzItMTMuMzQsMy4xMy0zLjQ4LDcuMTYtNS4yMSwxMi4xLTUuMjEsNC41MywwLDguMjMsMS41NywxMS4wOCw0LjcsMi44NCwzLjE1LDQuMjcsNy4yMyw0LjI3LDEyLjI1djQxLjQ0aDE3LjY3di00NS4yMWMwLTguNi0yLjQ4LTE1LjU3LTcuNDUtMjAuOTRaIi8+CiAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMyIgZD0iTTc1My45MSw2OC4wNWwyOS43Mi0yOC41NWgtMjIuNjFsLTI3LjgzLDI2LjUyVjEwLjk3aC0xNy45N3YxMDEuNTZoMTcuOTd2LTI0LjM1bDguNTUtOC4yNCwyMi45LDMyLjU5aDIxLjQ0bC0zMi4xOC00NC40OFoiLz4KICAgICAgPGc+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNNjcuMTIsOC44N3YyOC41NmwtMjAuMzktMjAuMzljNi42NC0zLjA5LDEzLjU0LTUuODMsMjAuMzktOC4xN1oiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0zNy45NSw2Ni40MWwtOS4zNSw5LjM2LDM4LjUyLDM4LjUydjE0QzM0Ljc5LDEyMy45MywwLDk1LjMyLDAsNjMuNjljMC0xNS4xLDE0LjgyLTI5LjIyLDM0LjM3LTQwLjMxbDMyLjc1LDMyLjc1djM5LjQ0bC0yOS4xNy0yOS4xN1oiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0xMzUuNTMsMTEuODJsLTU1LjE4LDU1LjE4VjQuODVjMTEuNjYtMy4xMiwyMi41Mi00Ljg1LDMwLjg3LTQuODUsMTIuMTEsMCwxOS42Myw0LjQ5LDI0LjMxLDExLjgyWiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTE0My4wOCw3MC41NmMwLDMyLjczLTMwLjE2LDU2LjAxLTYyLjcyLDU4LjE1di00M2w2MC40LTYwLjRjMi44NywxMi45NCwyLjMyLDI5LjI5LDIuMzIsNDUuMjVaIi8+CiAgICAgIDwvZz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPg==" alt="twigs&amp;ink" class="footer__logo-img" style="height:28px;width:auto;margin-bottom:var(--space-3)"/>
+        <div class="footer__slogan">Crafting Transformative MarTech Experiences</div>
+        <p class="footer__desc">A results-driven B2B digital marketing agency. Growing your business, organically.</p>
+      </div>
+      <div>
+        <div class="footer__col-head">Services</div>
+        <div class="footer__links">
+          <a href="#services">Account-Based Marketing</a>
+          <a href="#services">Content Marketing</a>
+          <a href="#services">Marketing Automation</a>
+          <a href="#services">Digital Strategy & SEO</a>
+          <a href="#services">CMO as a Service</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer__col-head">Company</div>
+        <div class="footer__links">
+          <a href="#about">About Us</a>
+          <a href="#approach">Our Approach</a>
+          <a href="#why">Why Choose Us</a>
+          <a href="#testimonials">Client Stories</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer__col-head">Contact</div>
+        <div class="footer__links">
+          <a href="mailto:hello@twigsandink.com">hello@twigsandink.com</a>
+          <a href="#contact">Book a Call</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__btm">
+      <div class="footer__copy">&copy; 2026 twigs&amp;ink. All rights reserved.</div>
+      <div class="footer__socials">
+        <a href="#" class="footer__soc" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="#" class="footer__soc" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="#" class="footer__soc" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+      </div>
+      <div class="footer__copy">Built with intention.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Cursor
+const cur=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+(function lr(){rx+=(mx-rx)*0.1;ry+=(my-ry)*0.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(lr)})();
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{ring.style.width='52px';ring.style.height='52px'});
+  el.addEventListener('mouseleave',()=>{ring.style.width='34px';ring.style.height='34px'});
+});
+
+// Nav scroll
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40),{passive:true});
+
+// Theme
+const root=document.documentElement,ico=document.getElementById('themeIco');
+let dark=true;
+function setTheme(d){
+  dark=d;root.setAttribute('data-theme',dark?'dark':'light');
+  ico.innerHTML=dark
+    ?'<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>'
+    :'<circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>';
+}
+document.getElementById('themeBtn').addEventListener('click',()=>setTheme(!dark));
+setTheme(matchMedia('(prefers-color-scheme:dark)').matches);
+
+// Mobile nav
+const nlinks=document.getElementById('navLinks'),hbg=document.getElementById('hbg');
+function toggleNav(){const o=nlinks.classList.toggle('open');hbg.classList.toggle('open',o);hbg.setAttribute('aria-expanded',o)}
+function closeNav(){nlinks.classList.remove('open');hbg.classList.remove('open');hbg.setAttribute('aria-expanded','false')}
+
+// Count-up
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{
+  if(!e.isIntersecting)return;
+  const el=e.target,t=+el.dataset.target,s=performance.now();
+  (function go(n){const p=Math.min((n-s)/1200,1),ease=1-Math.pow(1-p,3);el.textContent=Math.round(ease*t);if(p<1)requestAnimationFrame(go)})(s);
+  obs.unobserve(el);
+}),{threshold:0.5});
+document.querySelectorAll('.count-up').forEach(c=>obs.observe(c));
+
+// Testimonials
+const trk=document.getElementById('testiTrack'),tnav=document.getElementById('testiNav');
+const items=trk.children;let cur2=0;
+Array.from(items).forEach((_,i)=>{
+  const b=document.createElement('button');
+  b.className='testi__dot'+(i===0?' active':'');
+  b.setAttribute('aria-label','Testimonial '+(i+1));
+  b.addEventListener('click',()=>go2(i));
+  tnav.appendChild(b);
+});
+function go2(i){
+  cur2=i;const gap=16,w=trk.parentElement.offsetWidth;
+  trk.style.transform=`translateX(${-(w+gap)*i}px)`;
+  document.querySelectorAll('.testi__dot').forEach((d,j)=>d.classList.toggle('active',j===i));
+}
+let at=setInterval(()=>go2((cur2+1)%items.length),4500);
+trk.parentElement.addEventListener('mouseenter',()=>clearInterval(at));
+trk.parentElement.addEventListener('mouseleave',()=>{at=setInterval(()=>go2((cur2+1)%items.length),4500)});
+window.addEventListener('resize',()=>go2(cur2));
+</script>
+</body>
+</html>
